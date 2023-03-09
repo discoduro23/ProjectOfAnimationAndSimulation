@@ -332,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyparts: 10
   bodyPrefab: {fileID: 6541242562816409669, guid: 402bb8f1c5e57834aabfb0636f41a0fa, type: 3}
+  tailPrefab: {fileID: 6541242562816409669, guid: b6e46b82e5b99dc43ab532c7671e4739, type: 3}
   head: {fileID: 1765380116}
   body: []
 --- !u!4 &1411793464
@@ -367,10 +368,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1411793464}
     m_Modifications:
-    - target: {fileID: 7735526728173386612, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
-      propertyPath: m_ConnectedBody
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7735526728173386613, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
       propertyPath: m_RootOrder
       value: 0

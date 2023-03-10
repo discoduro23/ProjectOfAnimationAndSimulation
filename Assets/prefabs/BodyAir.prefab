@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 6541242562816409721}
   - component: {fileID: 6541242562816409670}
   - component: {fileID: 6541242562816409668}
+  - component: {fileID: -6055659203741846278}
   m_Layer: 0
-  m_Name: Tail
+  m_Name: BodyAir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6507b278cd9e198428ad3cc9248b259d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,5 +113,23 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-6055659203741846278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541242562816409669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e6c0177e1dae3478619e39f19ef1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyTypes:
+  - {fileID: 6541242562816409669}
+  - {fileID: 6541242562816409669, guid: 402bb8f1c5e57834aabfb0636f41a0fa, type: 3}
+  - {fileID: 6541242562816409669, guid: ce0814e478b5ad343943c01e9fe1849f, type: 3}
+  PreviousNode: {fileID: 0}
+  NextNode: {fileID: 0}

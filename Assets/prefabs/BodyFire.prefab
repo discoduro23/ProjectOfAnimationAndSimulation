@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6541242562816409721}
   - component: {fileID: 6541242562816409670}
   - component: {fileID: 6541242562816409668}
-  - component: {fileID: 3224505528476256935}
+  - component: {fileID: -6055659203741846278}
   m_Layer: 0
-  m_Name: Body
+  m_Name: BodyFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ccbd947f418768b4aa39647a48535e53, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,51 +113,23 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
---- !u!144 &3224505528476256935
-CharacterJoint:
+--- !u!114 &-6055659203741846278
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6541242562816409669}
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: -0.5, y: 0, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 0
-  m_ConnectedAnchor: {x: 0.5, y: 0, z: 0}
-  serializedVersion: 2
-  m_SwingAxis: {x: 0, y: 1, z: 0}
-  m_TwistLimitSpring:
-    spring: 0
-    damper: 0
-  m_LowTwistLimit:
-    limit: -38.1
-    bounciness: 0
-    contactDistance: 0
-  m_HighTwistLimit:
-    limit: 10
-    bounciness: 0
-    contactDistance: 0
-  m_SwingLimitSpring:
-    spring: 0
-    damper: 0
-  m_Swing1Limit:
-    limit: 18.1
-    bounciness: 0
-    contactDistance: 0
-  m_Swing2Limit:
-    limit: 32.53
-    bounciness: 0
-    contactDistance: 0
-  m_EnableProjection: 0
-  m_ProjectionDistance: 0.1
-  m_ProjectionAngle: 180
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 1
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e6c0177e1dae3478619e39f19ef1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyTypes:
+  - {fileID: 6541242562816409669, guid: 945746bda13dbdf4885f58b8e759eed7, type: 3}
+  - {fileID: 6541242562816409669}
+  - {fileID: 6541242562816409669, guid: ce0814e478b5ad343943c01e9fe1849f, type: 3}
+  PreviousNode: {fileID: 0}
+  NextNode: {fileID: 0}

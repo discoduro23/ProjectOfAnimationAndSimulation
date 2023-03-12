@@ -37,21 +37,19 @@ public class HeadController : MonoBehaviour
         //constant velocity forward
         if (rb.velocity.magnitude < speed)
         {
-            rb.AddForce(transform.right * speed * force);
+            rb.velocity = transform.right * speed;
         }
 
-        //controll rotation with a and d
         if (Input.GetKey(KeyCode.A))
         {
-            rb.angularVelocity = Vector3.up * -rotationSpeed;
+            transform.Rotate(Vector3.up * -rotationSpeed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.D))
+
+        if (Input.GetKey(KeyCode.D))
         {
-            rb.angularVelocity = Vector3.up * rotationSpeed;
+            transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
         }
-        else
-        {
-            rb.angularVelocity = Vector3.zero;
-        }
+
+
     }
 }

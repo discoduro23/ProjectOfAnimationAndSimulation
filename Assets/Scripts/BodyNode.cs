@@ -38,26 +38,27 @@ public class BodyNode : MonoBehaviour
             joint.connectedAnchor = new Vector3(0.5f, 0, 0);
             joint.useSpring = true;
             JointSpring spring = new JointSpring();
-            spring.spring = 100;
+            spring.spring = 10000000;
             spring.damper = 0;
             spring.targetPosition = 0;
             joint.spring = spring;
             joint.useMotor = true;
             JointMotor motor = new JointMotor();
-            motor.force = 100;
+            motor.force = 1000;
             motor.targetVelocity = 0;
+            motor.freeSpin = false;
             joint.motor = motor;
             joint.useLimits = true;
             JointLimits limits = new JointLimits();
-            limits.min = -45;
-            limits.max = 45;
+            limits.min = -90;
+            limits.max = 90;
             limits.bounciness = 0;
             limits.bounceMinVelocity = 0;
             limits.contactDistance = 0;
             joint.limits = limits;
             joint.breakForce = Mathf.Infinity;
             joint.breakTorque = Mathf.Infinity;
-            joint.enableCollision = false;
+            joint.enableCollision = true;
             joint.enablePreprocessing = true;
         
 

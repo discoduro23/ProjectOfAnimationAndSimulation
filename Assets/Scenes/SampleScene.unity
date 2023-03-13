@@ -353,7 +353,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086893765}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: da5b0e044037a0746a53cfa779fbb3af, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -481,6 +481,22 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: -499597999418514549, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
+      propertyPath: bodyTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -499597999418514549, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
+      propertyPath: bodyTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 6541242562816409669, guid: ce0814e478b5ad343943c01e9fe1849f, type: 3}
+    - target: {fileID: -499597999418514549, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
+      propertyPath: bodyTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 6541242562816409669, guid: ce0814e478b5ad343943c01e9fe1849f, type: 3}
+    - target: {fileID: -499597999418514549, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
+      propertyPath: bodyTypes.Array.data[3]
+      value: 
+      objectReference: {fileID: 6541242562816409669, guid: ce0814e478b5ad343943c01e9fe1849f, type: 3}
     - target: {fileID: 7735526728173386613, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -11,7 +11,7 @@ public class HeadController : MonoBehaviour
     private BodyNode bodyNode;
     public GameObject tail;
 
-    private float time = 0;
+    public float time = 0;
     private float intervalF = 0.2f;
     private float intervalS = 1f;
     private BodyNode node;
@@ -29,6 +29,7 @@ public class HeadController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //if space pressed spawn next node
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -40,15 +41,17 @@ public class HeadController : MonoBehaviour
         //Movement
         if (Input.GetKey(KeyCode.W))
         {
-            if(i==0){
+            time += Time.deltaTime;
+            if (i == 0)
+            {
                 node = node.PreviousNode.GetComponent<BodyNode>();
             }
-            time += Time.deltaTime;
+
             if (time < intervalF)
             {
                 tail.GetComponent<Rigidbody>().mass = 1000;
                 rb.mass = 1;
-                
+
             }
             if (node.PreviousNode != null)
             {
@@ -59,9 +62,9 @@ public class HeadController : MonoBehaviour
                     node = node.PreviousNode.GetComponent<BodyNode>();
                     i++;
                 }
-                
+
             }
-            else if (time > intervalF * i + intervalS)
+            else if (time > (intervalF * i) + intervalS)
             {
                 tail.GetComponent<Rigidbody>().mass = 1;
                 rb.mass = 1000;
@@ -81,8 +84,11 @@ public class HeadController : MonoBehaviour
             {
                 time = 0;
                 i = 0;
+                node = tail.GetComponent<BodyNode>();
             }
         }
+        
+
 
 
 

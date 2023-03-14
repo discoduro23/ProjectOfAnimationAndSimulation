@@ -27,7 +27,7 @@ public class BodyNode : MonoBehaviour
 
     public GameObject SpawnNextNode( int type)
     {
-        GameObject node = gameObject;
+        GameObject node;
         if (NextNode == null)
         {
             NextNode = Instantiate(bodyTypes[type], transform.position, transform.rotation);
@@ -37,6 +37,7 @@ public class BodyNode : MonoBehaviour
             imLast = false;
             GetComponent<Rigidbody>().mass = 1;
             SearchHead(gameObject);
+            node = NextNode;
 
             //muscleUp
             muscleUp = gameObject.AddComponent<SpringJoint>();

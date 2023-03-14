@@ -128,8 +128,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyTypes:
-  - {fileID: 6541242562816409669, guid: 945746bda13dbdf4885f58b8e759eed7, type: 3}
-  - {fileID: 6541242562816409669, guid: 402bb8f1c5e57834aabfb0636f41a0fa, type: 3}
   - {fileID: 6541242562816409669}
   PreviousNode: {fileID: 0}
   NextNode: {fileID: 0}
+  head: {fileID: 0}
+  imLast: 1
+  muscleLeft: {fileID: 0}
+  muscleRight: {fileID: 0}
+  muscleUp: {fileID: 0}
+  muscleCenter: {fileID: 0}

@@ -343,7 +343,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086893765}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 793a51fe6897e9d488165220731d7787, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -370,7 +370,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bd6b3edecf9c8a745ab42d199eb002eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -531,9 +531,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7735526728173386616, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 793a51fe6897e9d488165220731d7787, type: 2}
     - target: {fileID: 7735526728173386617, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
       propertyPath: m_Mass
-      value: 1e+9
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735526728173386617, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 7735526728173386619, guid: abf03ccf0762e764f95c6863a4eee463, type: 3}
       propertyPath: m_Name

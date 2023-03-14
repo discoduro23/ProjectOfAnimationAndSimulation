@@ -12,12 +12,12 @@ public class HeadController : MonoBehaviour
     public GameObject tail;
 
     public float time = 0;
-    private float intervalF = 0.2f;
-    private float intervalS = 1f;
-    private BodyNode node;
-    private int i = 0;
-
-
+    private float intervalF = 0.1f;
+    private float intervalS = 0.5f;
+    public BodyNode node;
+    public int i = 0;
+    public int nodeCount = 0;
+    public bool growing = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,16 +36,17 @@ public class HeadController : MonoBehaviour
             tail = bodyNode.SpawnNextNode(0);
             node = tail.GetComponent<BodyNode>();
             tail.GetComponent<Rigidbody>().mass = 1000;
+            nodeCount++;
         }
 
         //Movement
         if (Input.GetKey(KeyCode.W))
         {
             time += Time.deltaTime;
-            if (i == 0)
-            {
-                node = node.PreviousNode.GetComponent<BodyNode>();
-            }
+            //if (i == 0)
+            //{
+            //    node = node.PreviousNode.GetComponent<BodyNode>();
+            //}
 
             if (time < intervalF)
             {
@@ -53,38 +54,45 @@ public class HeadController : MonoBehaviour
                 rb.mass = 1;
 
             }
-            if (node.PreviousNode != null)
+            else if (node.PreviousNode != null && growing)
             {
-                if (time > intervalF * i)
+                if (time > intervalF * (i + 1))
                 {
-                    node.muscleCenter.minDistance = 0.2f;
-                    node.muscleCenter.maxDistance = 0.2f;
+                    
+                    node.PreviousNode.GetComponent<BodyNode>().muscleLeft.minDistance = 0.3f;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleLeft.maxDistance = 0.3f;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleRight.minDistance = 0.3f;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleRight.maxDistance = 0.3f;
                     node = node.PreviousNode.GetComponent<BodyNode>();
                     i++;
-                }
 
+                }
             }
-            else if (time > (intervalF * i) + intervalS)
+            else if (time < (intervalF * i) + intervalS)
             {
                 tail.GetComponent<Rigidbody>().mass = 1;
                 rb.mass = 1000;
+                growing = false;
             }
-            else if (node.NextNode != null)
+            else if (node.NextNode != null && !growing)
             {
-                if (time > intervalF * i)
+                if (time > intervalF * (i + 1))
                 {
-                    node.muscleCenter.minDistance = 0;
-                    node.muscleCenter.maxDistance = 0;
+                    node.muscleLeft.minDistance = 0;
+                    node.muscleLeft.maxDistance = 0;
+                    node.muscleRight.minDistance = 0;
+                    node.muscleRight.maxDistance = 0;
                     node = node.NextNode.GetComponent<BodyNode>();
                     i++;
-                }
 
+                }
             }
             else
             {
                 time = 0;
                 i = 0;
                 node = tail.GetComponent<BodyNode>();
+                growing = true;
             }
         }
         

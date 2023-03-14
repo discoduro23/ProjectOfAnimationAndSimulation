@@ -126,7 +126,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7735526728173386619}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 793a51fe6897e9d488165220731d7787, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -163,6 +163,12 @@ MonoBehaviour:
   rotationSpeed: 0.5
   speed: 7
   force: 1
+  tail: {fileID: 0}
+  time: 0
+  node: {fileID: 0}
+  i: 0
+  nodeCount: 0
+  growing: 1
 --- !u!114 &-499597999418514549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,4 +187,10 @@ MonoBehaviour:
   - {fileID: 6541242562816409669, guid: ce0814e478b5ad343943c01e9fe1849f, type: 3}
   PreviousNode: {fileID: 0}
   NextNode: {fileID: 0}
-  joint: {fileID: 0}
+  head: {fileID: 0}
+  imLast: 1
+  muscleLeft: {fileID: 0}
+  muscleRight: {fileID: 0}
+  muscleUp: {fileID: 0}
+  muscleCenter: {fileID: 0}
+  material: {fileID: 13400000, guid: 793a51fe6897e9d488165220731d7787, type: 2}

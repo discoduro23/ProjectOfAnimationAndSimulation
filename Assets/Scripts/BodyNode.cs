@@ -13,6 +13,7 @@ public class BodyNode : MonoBehaviour
     public SpringJoint muscleRight;
     public SpringJoint muscleUp;
     public SpringJoint muscleCenter;
+    public PhysicMaterial material;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,8 @@ public class BodyNode : MonoBehaviour
             GetComponent<Rigidbody>().mass = 1;
             SearchHead(gameObject);
             node = NextNode;
-
+            GetComponent<SphereCollider>().material = material;
+            
             //muscleUp
             muscleUp = gameObject.AddComponent<SpringJoint>();
             muscleUp.connectedBody = NextNode.GetComponent<Rigidbody>();
@@ -50,7 +52,7 @@ public class BodyNode : MonoBehaviour
             muscleUp.minDistance = 0;
             muscleUp.maxDistance = 0;
             muscleUp.tolerance = 0;
-            muscleUp.enableCollision = false;
+            muscleUp.enableCollision = true;
             muscleUp.enablePreprocessing = false;
 
             //muscleRight
@@ -64,7 +66,7 @@ public class BodyNode : MonoBehaviour
             muscleRight.minDistance = 0;
             muscleRight.maxDistance = 0;
             muscleRight.tolerance = 0;
-            muscleRight.enableCollision = false;
+            muscleRight.enableCollision = true;
             muscleRight.enablePreprocessing = false;
 
             //muscleLeft
@@ -78,22 +80,8 @@ public class BodyNode : MonoBehaviour
             muscleLeft.minDistance = 0;
             muscleLeft.maxDistance = 0;
             muscleLeft.tolerance = 0;
-            muscleLeft.enableCollision = false;
+            muscleLeft.enableCollision = true;
             muscleLeft.enablePreprocessing = false;
-
-            //muscleCenter
-            muscleCenter = gameObject.AddComponent<SpringJoint>();
-            muscleCenter.connectedBody = NextNode.GetComponent<Rigidbody>();
-            muscleCenter.autoConfigureConnectedAnchor = false;
-            muscleCenter.anchor = new Vector3(-0.5f, 0, 0);
-            muscleCenter.connectedAnchor = new Vector3(0.5f, 0, 0);
-            muscleCenter.spring = 1000;
-            muscleCenter.damper = 10;
-            muscleCenter.minDistance = 0;
-            muscleCenter.maxDistance = 0;
-            muscleCenter.tolerance = 0;
-            muscleCenter.enableCollision = false;
-            muscleCenter.enablePreprocessing = false;
 
 
 
@@ -102,6 +90,7 @@ public class BodyNode : MonoBehaviour
         else
         {
             node = NextNode.GetComponent<BodyNode>().SpawnNextNode(type);
+            GetComponent<SphereCollider>().material = null;
         }
         return node;
     }
@@ -115,6 +104,15 @@ public class BodyNode : MonoBehaviour
         else
         {
             PreviousNode.GetComponent<BodyNode>().SearchHead(Ref);
+        }
+    }
+
+    public void restoreMassToNodes(float NewMass)
+    {
+        if (NextNode != null)
+        {
+            GetComponent<Rigidbody>().mass = NewMass;
+            NextNode.GetComponent<BodyNode>().restoreMassToNodes(NewMass);
         }
     }
 }

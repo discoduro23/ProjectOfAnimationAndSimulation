@@ -9,6 +9,11 @@ public class HeadController : MonoBehaviour
     public float force = 1f;
     private Rigidbody rb;
     private BodyNode bodyNode;
+    public GameObject tail;
+
+    private float time = 0;
+    private float intervalF = 0.2f;
+    private float intervalS = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,32 +28,41 @@ public class HeadController : MonoBehaviour
         //if space pressed spawn next node
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            bodyNode.SpawnNextNode(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            bodyNode.SpawnNextNode(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            bodyNode.SpawnNextNode(2);
+            tail = bodyNode.SpawnNextNode(0);
         }
 
-        //constant velocity forward
-        if (rb.velocity.magnitude < speed)
+        //Movement
+        if (Input.GetKey(KeyCode.W))
         {
-            rb.velocity = transform.right * speed;
+            time += Time.deltaTime;
+            int i = 0;
+            BodyNode node = bodyNode;
+            if (time < intervalF)
+            {
+                tail.GetComponent<Rigidbody>().mass = 1000;
+                rb.mass = 1;
+                
+            }
+            while (node.NextNode != null)
+            {
+                if (time > intervalF * i)
+                {
+                    node.muscleCenter.spring = 100;/// Estas Aqui <------------------------------------------------------------------
+                }
+                node = node.NextNode.GetComponent<BodyNode>();
+                i++;
+            }
+            if (time < intervalF * i + intervalS)
+            {
+                tail.GetComponent<Rigidbody>().mass = 1;
+                rb.mass = 1000;
+            }
+            else
+            {
+                time = 0;
+            }
         }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(Vector3.up * -rotationSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
-        }
 
 
     }

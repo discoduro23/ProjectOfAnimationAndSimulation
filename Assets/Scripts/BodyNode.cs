@@ -9,10 +9,13 @@ public class BodyNode : MonoBehaviour
     public GameObject NextNode;
     public GameObject head;
     public bool imLast = true;
-    public SpringJoint muscleLeft;
-    public SpringJoint muscleRight;
-    public SpringJoint muscleUp;
-    public SpringJoint muscleCenter;
+    public SpringJoint muscleLeftUp;
+    public SpringJoint muscleRightUp;
+    public SpringJoint muscleLeftDown;
+    public SpringJoint muscleRightDown;
+
+    public ConfigurableJoint joint;
+
     public PhysicMaterial material;
 
     // Start is called before the first frame update
@@ -24,6 +27,7 @@ public class BodyNode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     public GameObject SpawnNextNode( int type)
@@ -40,52 +44,78 @@ public class BodyNode : MonoBehaviour
             SearchHead(gameObject);
             node = NextNode;
             GetComponent<SphereCollider>().material = material;
-            
-            //muscleUp
-            muscleUp = gameObject.AddComponent<SpringJoint>();
-            muscleUp.connectedBody = NextNode.GetComponent<Rigidbody>();
-            muscleUp.autoConfigureConnectedAnchor = false;
-            muscleUp.anchor = new Vector3(-0.5f, 0.25f, 0);
-            muscleUp.connectedAnchor = new Vector3(0.5f, 0.25f, 0);
-            muscleUp.spring = 0;
-            muscleUp.damper = 10;
-            muscleUp.minDistance = 0;
-            muscleUp.maxDistance = 0;
-            muscleUp.tolerance = 0;
-            muscleUp.enableCollision = true;
-            muscleUp.enablePreprocessing = false;
 
-            //muscleRight
-            muscleRight = gameObject.AddComponent<SpringJoint>();
-            muscleRight.connectedBody = NextNode.GetComponent<Rigidbody>();
-            muscleRight.autoConfigureConnectedAnchor = false;
-            muscleRight.anchor = new Vector3(-0.5f, 0, -0.25f);
-            muscleRight.connectedAnchor = new Vector3(0.5f, 0, -0.25f);
-            muscleRight.spring = 1000;
-            muscleRight.damper = 10;
-            muscleRight.minDistance = 0;
-            muscleRight.maxDistance = 0;
-            muscleRight.tolerance = 0;
-            muscleRight.enableCollision = true;
-            muscleRight.enablePreprocessing = false;
+            //muscleRightUp
+            muscleRightUp = gameObject.AddComponent<SpringJoint>();
+            muscleRightUp.connectedBody = NextNode.GetComponent<Rigidbody>();
+            muscleRightUp.autoConfigureConnectedAnchor = false;
+            muscleRightUp.anchor = new Vector3(-0.5f, 0.25f, -0.25f);
+            muscleRightUp.connectedAnchor = new Vector3(0.5f, 0.25f, -0.25f);
+            muscleRightUp.spring = 1000;
+            muscleRightUp.damper = 10;
+            muscleRightUp.minDistance = 0;
+            muscleRightUp.maxDistance = 0;
+            muscleRightUp.tolerance = 0;
+            muscleRightUp.enableCollision = true;
+            muscleRightUp.enablePreprocessing = false;
 
-            //muscleLeft
-            muscleLeft = gameObject.AddComponent<SpringJoint>();
-            muscleLeft.connectedBody = NextNode.GetComponent<Rigidbody>();
-            muscleLeft.autoConfigureConnectedAnchor = false;
-            muscleLeft.anchor = new Vector3(-0.5f, 0, 0.25f);
-            muscleLeft.connectedAnchor = new Vector3(0.5f, 0, 0.25f);
-            muscleLeft.spring = 1000;
-            muscleLeft.damper = 10;
-            muscleLeft.minDistance = 0;
-            muscleLeft.maxDistance = 0;
-            muscleLeft.tolerance = 0;
-            muscleLeft.enableCollision = true;
-            muscleLeft.enablePreprocessing = false;
+            //muscleRightDown
+            muscleRightDown = gameObject.AddComponent<SpringJoint>();
+            muscleRightDown.connectedBody = NextNode.GetComponent<Rigidbody>();
+            muscleRightDown.autoConfigureConnectedAnchor = false;
+            muscleRightDown.anchor = new Vector3(-0.5f, -0.25f, -0.25f);
+            muscleRightDown.connectedAnchor = new Vector3(0.5f, -0.25f, -0.25f);
+            muscleRightDown.spring = 1000;
+            muscleRightDown.damper = 10;
+            muscleRightDown.minDistance = 0;
+            muscleRightDown.maxDistance = 0;
+            muscleRightDown.tolerance = 0;
+            muscleRightDown.enableCollision = true;
+            muscleRightDown.enablePreprocessing = false;
+
+            //muscleLeftUp
+            muscleLeftUp = gameObject.AddComponent<SpringJoint>();
+            muscleLeftUp.connectedBody = NextNode.GetComponent<Rigidbody>();
+            muscleLeftUp.autoConfigureConnectedAnchor = false;
+            muscleLeftUp.anchor = new Vector3(-0.5f, 0.25f, 0.25f);
+            muscleLeftUp.connectedAnchor = new Vector3(0.5f, 0.25f, 0.25f);
+            muscleLeftUp.spring = 1000;
+            muscleLeftUp.damper = 10;
+            muscleLeftUp.minDistance = 0;
+            muscleLeftUp.maxDistance = 0;
+            muscleLeftUp.tolerance = 0;
+            muscleLeftUp.enableCollision = true;
+            muscleLeftUp.enablePreprocessing = false;
+
+            //muscleLeftDown
+            muscleLeftDown = gameObject.AddComponent<SpringJoint>();
+            muscleLeftDown.connectedBody = NextNode.GetComponent<Rigidbody>();
+            muscleLeftDown.autoConfigureConnectedAnchor = false;
+            muscleLeftDown.anchor = new Vector3(-0.5f, -0.25f, 0.25f);
+            muscleLeftDown.connectedAnchor = new Vector3(0.5f, -0.25f, 0.25f);
+            muscleLeftDown.spring = 1000;
+            muscleLeftDown.damper = 10;
+            muscleLeftDown.minDistance = 0;
+            muscleLeftDown.maxDistance = 0;
+            muscleLeftDown.tolerance = 0;
+            muscleLeftDown.enableCollision = true;
+            muscleLeftDown.enablePreprocessing = false;
+
+
+            joint = gameObject.AddComponent<ConfigurableJoint>();
+            joint.connectedBody = NextNode.GetComponent<Rigidbody>();
+            joint.autoConfigureConnectedAnchor = false;
+            joint.anchor = new Vector3(-0.4f, 0, 0);
+            joint.connectedAnchor = new Vector3(0.4f, 0, 0);
+            joint.xMotion = ConfigurableJointMotion.Limited;
+            joint.yMotion = ConfigurableJointMotion.Locked;
+            joint.zMotion = ConfigurableJointMotion.Locked;
+            joint.linearLimit = new SoftJointLimit { limit = 0.5f, bounciness = 0.5f, contactDistance = 0.5f };
+            joint.linearLimitSpring = new SoftJointLimitSpring { damper = 0.5f, spring =10f };
+            joint.enableCollision = true;
 
 
 
-            
         }
         else
         {

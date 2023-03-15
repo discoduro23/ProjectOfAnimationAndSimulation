@@ -12,12 +12,15 @@ public class HeadController : MonoBehaviour
     public GameObject tail;
 
     public float time = 0;
-    private float intervalF = 0.1f;
-    private float intervalS = 0.5f;
+    private float intervalF = 0.2f;
+    private float intervalS = 1;
     public BodyNode node;
     public int i = 0;
     public int nodeCount = 0;
     public bool growing = true;
+
+    public float maxDistanceBetweenParts = 0;
+    public float distanceBetweenParts = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,10 +62,14 @@ public class HeadController : MonoBehaviour
                 if (time > intervalF * (i + 1))
                 {
                     
-                    node.PreviousNode.GetComponent<BodyNode>().muscleLeft.minDistance = 0.3f;
-                    node.PreviousNode.GetComponent<BodyNode>().muscleLeft.maxDistance = 0.3f;
-                    node.PreviousNode.GetComponent<BodyNode>().muscleRight.minDistance = 0.3f;
-                    node.PreviousNode.GetComponent<BodyNode>().muscleRight.maxDistance = 0.3f;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleLeftUp.minDistance = distanceBetweenParts;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleLeftUp.maxDistance = distanceBetweenParts;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleRightUp.minDistance = distanceBetweenParts;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleRightUp.maxDistance = distanceBetweenParts;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleLeftDown.minDistance = distanceBetweenParts;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleLeftDown.maxDistance = distanceBetweenParts;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleRightDown.minDistance = distanceBetweenParts;
+                    node.PreviousNode.GetComponent<BodyNode>().muscleRightDown.maxDistance = distanceBetweenParts;
                     node = node.PreviousNode.GetComponent<BodyNode>();
                     i++;
 
@@ -78,10 +85,15 @@ public class HeadController : MonoBehaviour
             {
                 if (time > intervalF * (i + 1))
                 {
-                    node.muscleLeft.minDistance = 0;
-                    node.muscleLeft.maxDistance = 0;
-                    node.muscleRight.minDistance = 0;
-                    node.muscleRight.maxDistance = 0;
+                    
+                    node.muscleLeftUp.minDistance = maxDistanceBetweenParts;
+                    node.muscleLeftUp.maxDistance = maxDistanceBetweenParts;
+                    node.muscleRightUp.minDistance = maxDistanceBetweenParts;
+                    node.muscleRightUp.maxDistance = maxDistanceBetweenParts;
+                    node.muscleLeftDown.minDistance = maxDistanceBetweenParts;
+                    node.muscleLeftDown.maxDistance = maxDistanceBetweenParts;
+                    node.muscleRightDown.minDistance = maxDistanceBetweenParts;
+                    node.muscleRightDown.maxDistance = maxDistanceBetweenParts;
                     node = node.NextNode.GetComponent<BodyNode>();
                     i++;
 

@@ -140,7 +140,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7735526728173386619}
   serializedVersion: 2
-  m_Mass: 1000
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -189,8 +189,8 @@ MonoBehaviour:
   NextNode: {fileID: 0}
   head: {fileID: 0}
   imLast: 1
-  muscleLeft: {fileID: 0}
-  muscleRight: {fileID: 0}
-  muscleUp: {fileID: 0}
-  muscleCenter: {fileID: 0}
+  muscleLeftUp: {fileID: 0}
+  muscleRightUp: {fileID: 0}
+  muscleLeftDown: {fileID: 0}
+  muscleRightDown: {fileID: 0}
   material: {fileID: 13400000, guid: 793a51fe6897e9d488165220731d7787, type: 2}

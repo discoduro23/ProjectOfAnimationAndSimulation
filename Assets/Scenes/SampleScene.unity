@@ -683,11 +683,41 @@ BoxCollider:
   m_GameObject: {fileID: 1181579139}
   m_Material: {fileID: 13400000, guid: 793a51fe6897e9d488165220731d7787, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!145 &1181579147
+--- !u!146 &1181579148
+WheelCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181579139}
+  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.5
+  m_SuspensionSpring:
+    spring: 0
+    damper: 0
+    targetPosition: 0.5
+  m_SuspensionDistance: 0
+  m_ForceAppPointDistance: 0
+  m_Mass: 20
+  m_WheelDampingRate: 0.25
+  m_ForwardFriction:
+    m_ExtremumSlip: 0.4
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.8
+    m_AsymptoteValue: 0.5
+    m_Stiffness: 1
+  m_SidewaysFriction:
+    m_ExtremumSlip: 0.2
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.75
+    m_Stiffness: 1
+  m_Enabled: 1
+--- !u!145 &1181579154
 SpringJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -698,9 +728,9 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: -0.5}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 3.27, z: -0.061}
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
-  m_Spring: 10
+  m_Spring: 1000
   m_Damper: 0.2
   m_MinDistance: 0
   m_MaxDistance: 0
@@ -750,6 +780,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 949194499}
     m_Modifications:
+    - target: {fileID: 1744060828, guid: c8cbfaabf651f204cb2ba89bf701a671, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7735526728173386613, guid: c8cbfaabf651f204cb2ba89bf701a671, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -764,7 +798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7735526728173386613, guid: c8cbfaabf651f204cb2ba89bf701a671, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.415
+      value: -1.067
       objectReference: {fileID: 0}
     - target: {fileID: 7735526728173386613, guid: c8cbfaabf651f204cb2ba89bf701a671, type: 3}
       propertyPath: m_LocalRotation.w
@@ -825,10 +859,10 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_SuspensionDistance: 0
   m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -954,6 +988,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 949194499}
     m_Modifications:
+    - target: {fileID: 847365156, guid: 06ec0a64c0145224883bb2b8e1524cc5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 847365156, guid: 06ec0a64c0145224883bb2b8e1524cc5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747846957156008855, guid: 06ec0a64c0145224883bb2b8e1524cc5, type: 3}
+      propertyPath: steer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747846957156008855, guid: 06ec0a64c0145224883bb2b8e1524cc5, type: 3}
+      propertyPath: wheelF
+      value: 
+      objectReference: {fileID: 1181579148}
+    - target: {fileID: 2747846957156008855, guid: 06ec0a64c0145224883bb2b8e1524cc5, type: 3}
+      propertyPath: wheelR
+      value: 
+      objectReference: {fileID: 1744060833}
+    - target: {fileID: 2747846957156008855, guid: 06ec0a64c0145224883bb2b8e1524cc5, type: 3}
+      propertyPath: torqueForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7735526728173386613, guid: 06ec0a64c0145224883bb2b8e1524cc5, type: 3}
       propertyPath: m_RootOrder
       value: 0

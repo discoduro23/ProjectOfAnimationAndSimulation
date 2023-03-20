@@ -4,65 +4,36 @@ using UnityEngine;
 
 public class KinematicInverseController : MonoBehaviour
 {
-    
-    public List<Transform> joints;
+    public List<GameObject> joints;
     public float maxDistance = 1f;
     public float maxIterations = 100;
     public float distanceBetweenJoints = 1f;
-    public float speed = 1f;
-    public float threshold = 0.01f;
-    public float maxSpeed = 1f;
-
+    public Vector3 fixedPointOnStartEffector = new Vector3(0, 0, 0);
     public Transform target;
-    public Transform positioner;
-    Vector3 vel = Vector3.zero;
 
-    // Start is called before the first frame update
-    void Start()
+    void LateUpdate()
     {
-        joints = new List<Transform>();
-        joints.Add(transform);
-        while (joints[joints.Count - 1].childCount > 0)
-        {
-            joints.Add(joints[joints.Count - 1].GetChild(0));
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Vector3 targetpos = positioner.transform.position;
-        transform.position = Vector3.SmoothDamp(transform.position, targetpos, ref vel, speed);
-        //transform.LookAt(target.transform.position + Vector3.up * -4f);
-        Vector3 targetPosition = target.position;
-        Vector3 endPosition = joints[joints.Count - 1].position;
-
-        float distance = Vector3.Distance(targetPosition, endPosition);
-        if (distance > maxDistance)
-        {
-            targetPosition = endPosition + (targetPosition - endPosition).normalized * maxDistance;
-        }
-
         for (int i = 0; i < maxIterations; i++)
         {
-            endPosition = joints[joints.Count - 1].position;
-            distance = Vector3.Distance(targetPosition, endPosition);
-
-            if (distance < threshold)
+            for (int j = joints.Count - 1; j >= 0; j--)
             {
-                break;
-            }
-
-            joints[joints.Count - 1].position = targetPosition;
-
-            for (int j = joints.Count - 2; j >= 0; j--)
-            {
-                joints[j].position = joints[j + 1].position + (joints[j].position - joints[j + 1].position).normalized * distanceBetweenJoints;
-            }
-
-            for (int j = 1; j < joints.Count; j++)
-            {
-                joints[j].position = joints[j - 1].position + (joints[j].position - joints[j - 1].position).normalized * distanceBetweenJoints;
+                if (j == joints.Count - 1)
+                {
+                    joints[j].transform.LookAt(target);
+                }
+                else
+                {
+                    joints[j].transform.LookAt(joints[j + 1].transform);
+                }
+                joints[j].transform.rotation *= Quaternion.Euler(fixedPointOnStartEffector);
+                if (j != 0)
+                {
+                    joints[j - 1].transform.position = joints[j].transform.position + (joints[j - 1].transform.position - joints[j].transform.position).normalized * distanceBetweenJoints;
+                }
+                if (Vector3.Distance(joints[j].transform.position, fixedPointOnStartEffector) > maxDistance)
+                {
+                    joints[j].transform.position = fixedPointOnStartEffector + (joints[j].transform.position - fixedPointOnStartEffector).normalized * maxDistance;
+                }
             }
         }
     }

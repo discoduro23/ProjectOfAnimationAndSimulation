@@ -36,6 +36,22 @@ public class CarController : MonoBehaviour
         wheelFL.GetComponent<WheelCollider>().steerAngle = Input.GetAxis("Horizontal") * maxSteerAngle;
         wheelFR.GetComponent<WheelCollider>().steerAngle  = Input.GetAxis("Horizontal") * maxSteerAngle;
 
+        //Breaks based on input
+        if (Input.GetKey(KeyCode.Space))
+        {
+            wheelFL.GetComponent<WheelCollider>().brakeTorque = 1000;
+            wheelFR.GetComponent<WheelCollider>().brakeTorque = 1000;
+            wheelBL.GetComponent<WheelCollider>().brakeTorque = 1000;
+            wheelBR.GetComponent<WheelCollider>().brakeTorque = 1000;
+        }
+        else
+        {
+            wheelFL.GetComponent<WheelCollider>().brakeTorque = 0;
+            wheelFR.GetComponent<WheelCollider>().brakeTorque = 0;
+            wheelBL.GetComponent<WheelCollider>().brakeTorque = 0;
+            wheelBR.GetComponent<WheelCollider>().brakeTorque = 0;
+        }
+
         //update wheel visuals
         UpdateWheelVisuals(wheelFL, visibleTierFL);
         UpdateWheelVisuals(wheelFR, visibleTierFR);
@@ -49,7 +65,8 @@ public class CarController : MonoBehaviour
         Vector3 pos;
         Quaternion rot;
         wheelCollider.GetComponent<WheelCollider>().GetWorldPose(out pos, out rot);
-        wheelModel.transform.position = pos +new Vector3(-0.5f,0,0);
+        wheelModel.transform.position = pos;
+        wheelModel.transform.localPosition += new Vector3(-0.5f, 0, 0);
 
         // Rotate the wheel so it's upright and facing the correct direction
         wheelModel.transform.rotation = rot;

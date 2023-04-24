@@ -34,6 +34,10 @@ public class FLock : MonoBehaviour
     [SerializeField] private float _aligementDistance;
     public float aligementDistance { get { return _aligementDistance; } }
 
+    [Range(0, 10)]
+    [SerializeField] private float _obstacleDistance;
+    public float obstacleDistance { get { return _obstacleDistance; } }
+
     [Range(0, 100)]
     [SerializeField] private float _boundsDistance;
     public float boundsDistance { get { return _boundsDistance; } }
@@ -51,10 +55,13 @@ public class FLock : MonoBehaviour
     [SerializeField] private float _aligementWeight;
     public float aligementWeight { get { return _aligementWeight; } }
 
+    [Range(0, 100)]
+    [SerializeField] private float _obstacleWeight;
+    public float obstacleWeight { get { return _obstacleWeight; } }
+    
     [Range(0, 10)]
     [SerializeField] private float _boundsWeight;
     public float boundsWeight { get { return _boundsWeight; } }
-
     public FlockUnit[] allUnits { get; set; }
     // Start is called before the first frame update
 

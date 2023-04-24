@@ -82,7 +82,7 @@ public class TurretController : MonoBehaviour
                 {
                     bullets[i].SetActive(true);
                     bullets[i].transform.position = bulletSpawn.transform.position;
-                    bullets[i].GetComponent<Rigidbody>().AddForce(bulletSpawn.transform.up * bulletSpeed);
+                    bullets[i].GetComponent<Rigidbody>().AddForce(bulletSpawn.transform.up * bulletSpeed, ForceMode.Acceleration);
                     break;
                 }
             }

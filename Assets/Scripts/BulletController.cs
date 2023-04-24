@@ -18,6 +18,7 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         gameObject.SetActive(false);
     }
 }

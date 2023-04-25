@@ -185,7 +185,8 @@ public class FlockUnit : MonoBehaviour
     {
         var obstacleVector = Vector3.zero;
         RaycastHit hit;
-        if(Physics.Raycast(myTransform.position,myTransform.forward,out hit, assignedFlock.obstacleDistance, obstacleMask))
+        RaycastHit hit2;
+        if(Physics.Raycast(myTransform.position,myTransform.forward,out hit, assignedFlock.obstacleDistance, obstacleMask) && Physics.Raycast(myTransform.position, -myTransform.up, out hit2, assignedFlock.obstacleDistance, obstacleMask))
         {
             obstacleVector = FindBestDirectionToAvoidObstacle();
 

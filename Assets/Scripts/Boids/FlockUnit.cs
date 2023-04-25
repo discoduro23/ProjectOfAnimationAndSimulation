@@ -235,6 +235,7 @@ public class FlockUnit : MonoBehaviour
 
     private Vector3 CalculateTargetVector()
     {
+        if (assignedFlock.target == null) { return Vector3.zero; }
         Vector3 directionToTarget = -(myTransform.position - assignedFlock.target.position);
         if (directionToTarget.magnitude > assignedFlock.targetDistance) { return Vector3.zero; }
         return directionToTarget.normalized;

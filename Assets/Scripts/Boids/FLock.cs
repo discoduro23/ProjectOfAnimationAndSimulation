@@ -10,7 +10,10 @@ public class FLock : MonoBehaviour
     [SerializeField] private int flockSize;
     [SerializeField] private Vector3 spawnBounds;
 
-    
+    [Header("Target Setup")]
+    [SerializeField] private Transform _target;
+    public Transform target { get { return _target; } }
+
 
     [Header("Speed Setup")]
     [Range(0, 10)]
@@ -42,6 +45,10 @@ public class FLock : MonoBehaviour
     [SerializeField] private float _boundsDistance;
     public float boundsDistance { get { return _boundsDistance; } }
 
+    [Range(0, 100)]
+    [SerializeField] private float _targetDistance;
+    public float targetDistance { get { return _targetDistance; } }
+
     [Header("Behaviours Weights")]
     [Range(0, 10)]
     [SerializeField] private float _cohesionWeight;
@@ -62,6 +69,11 @@ public class FLock : MonoBehaviour
     [Range(0, 10)]
     [SerializeField] private float _boundsWeight;
     public float boundsWeight { get { return _boundsWeight; } }
+
+    [Range(0, 10)]
+    [SerializeField] private float _targetWeight;
+    public float targetWeight { get { return _targetWeight; } }
+
     public FlockUnit[] allUnits { get; set; }
     // Start is called before the first frame update
 

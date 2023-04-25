@@ -48,10 +48,10 @@ public class FlockUnit : MonoBehaviour
         var aligementVector = CalculateAligementVector() * assignedFlock.aligementWeight;
         var boundsVector = CalculateBoundsVector() * assignedFlock.boundsWeight;
         var obstacleVector = CalculateObstacleVector() * assignedFlock.obstacleWeight;
+        var targetVector = CalculateTargetVector() * assignedFlock.targetWeight;
 
 
-
-        var moveVector = cohesionVector + avoidanceVector + aligementVector + boundsVector + obstacleVector;
+        var moveVector = cohesionVector + avoidanceVector + aligementVector + boundsVector + obstacleVector + targetVector;
         moveVector = Vector3.SmoothDamp(myTransform.forward, moveVector, ref currentVelocity, smoothDamp);
         moveVector = moveVector.normalized * speed;
         if(moveVector == Vector3.zero)
@@ -61,7 +61,7 @@ public class FlockUnit : MonoBehaviour
         myTransform.position += moveVector * Time.deltaTime;
     }
 
-    
+
     private void CalculateSpeed()
     {
         if (cohesionNeighbours.Count ==0) return;
@@ -231,6 +231,13 @@ public class FlockUnit : MonoBehaviour
             }
         }
         return selectedDirection.normalized;
+    }
+
+    private Vector3 CalculateTargetVector()
+    {
+        Vector3 directionToTarget = -(myTransform.position - assignedFlock.target.position);
+        if (directionToTarget.magnitude > assignedFlock.targetDistance) { return Vector3.zero; }
+        return directionToTarget.normalized;
     }
 
     private bool IsInFOV(Vector3 position)

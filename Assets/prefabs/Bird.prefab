@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 2559046043663180287}
   - component: {fileID: 4627505759829169072}
   - component: {fileID: 1330431293574341271}
+  - component: {fileID: 4840563799189570389}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -220,3 +221,19 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: -1}
+  assignedFlock: {fileID: 0}
+--- !u!114 &4840563799189570389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191454035672313334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5089a50e9a35b7f4e82b1d6d0cc49212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackInterval: 5
+  FOVAngle: 30
+  AttackDistance: 10

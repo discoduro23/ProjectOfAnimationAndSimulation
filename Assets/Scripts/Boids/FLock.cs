@@ -80,11 +80,12 @@ public class FLock : MonoBehaviour
     public void Awake()
     {
         fishParent = new GameObject("fish Parent");
+        GenerateUnits();
     }
 
     void Start()
     {
-        GenerateUnits();
+        
     }
 
     // Update is called once per frame

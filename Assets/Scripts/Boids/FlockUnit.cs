@@ -17,7 +17,7 @@ public class FlockUnit : MonoBehaviour
     private List<FlockUnit> avoidanceNeighbours = new List<FlockUnit>();
     private List<FlockUnit> aligementNeighbours = new List<FlockUnit>();
 
-    private FLock assignedFlock;
+    public FLock assignedFlock;
     private Vector3 currentVelocity;
     private Vector3 currentObstacleAvoidanceVector;
     private float speed;

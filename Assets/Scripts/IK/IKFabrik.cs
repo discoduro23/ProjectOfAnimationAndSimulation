@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class IKFabrik : MonoBehaviour
 {
-    [SerializeField]
-    Transform[] joints; // The joints of the chain
+    [SerializeField] Transform[] joints; // The joints of the chain
     float[] lengthJoints; // length of each joint
+    
+    [SerializeField] int solverIterations = 10; // How many times to run the solver
+    private int solverIterationsLocal = 1;
 
-    [SerializeField]
-    int solverIterations = 10; // How many times to run the solver
-
-    [SerializeField]
-    Transform targetPos; // The target position
-
+    [SerializeField] Vector3 defaultPosition = Vector3.zero; // The default position of the end effector
+    [SerializeField] GameObject target = null; // The target to reach
+    private Transform smoothTempTarget = null; // The target position temporal, to have smooth
+    [SerializeField] float smoothTime = 0.3f;
+    Vector3 velocity = Vector3.zero;
+    
+    [SerializeField] float sphericalRadiusPresence = 0.1f; // The radius of the sphere that the target is in
+    
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +31,33 @@ public class IKFabrik : MonoBehaviour
             // Calculate the length of each joint
             lengthJoints[i] = Vector3.Distance(joints[i].position, joints[i + 1].position);
         }
+
+        //Set the smooth target
+        smoothTempTarget = joints[joints.Length - 1].transform;
+
+        // Set the solver iterations
+        solverIterationsLocal = solverIterations;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Run the solver
+        // Check if the target is in the sphere
+        if (Vector3.Distance(target.transform.position, joints[0].position) < sphericalRadiusPresence)
+        {
+            Vector3 targetPosition = target.transform.position;
+            smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, targetPosition, ref velocity, smoothTime);
+
+            solverIterationsLocal = solverIterations;
+        }
+        else
+        {
+            // Set the default position of the end effector
+            Vector3 tempDefPosition = joints[0].transform.position + defaultPosition;
+            smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, tempDefPosition, ref velocity, smoothTime);
+            solverIterationsLocal = 1;
+
+        }
         IKSolver();
     }
 
@@ -46,7 +72,7 @@ public class IKFabrik : MonoBehaviour
         }
 
         // Apply the solver iterations to get a more precise result
-        for (int i = 0; i < solverIterations; i++)
+        for (int i = 0; i < solverIterationsLocal; i++)
         {
             /* FABRIK ALGORITHM ITSELF
             *
@@ -87,7 +113,7 @@ public class IKFabrik : MonoBehaviour
         {
             if (i == (forwardPos.Length - 1)) // If it's the last joint
             {
-                inversePos[i] = targetPos.position; // The position is the same
+                inversePos[i] = smoothTempTarget.position; // The position is the same
             }
             else
             {
@@ -145,5 +171,10 @@ public class IKFabrik : MonoBehaviour
         {
             Gizmos.DrawLine(joints[i].position, joints[i + 1].position);
         }
+
+        // Draw a sphere in the target position
+        Gizmos.DrawWireSphere(joints[0].position, sphericalRadiusPresence);
+        
     }
 }
+    

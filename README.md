@@ -1,1 +1,22 @@
-# Name to determine later!
+# Nasa's Secret Adventure
+
+## Description
+Well, to be determined I guess...
+
+## Final Project Elements
+
+- [x] A README.md file that describes the project and its elements.
+- [ ] **Projectile Mechanics**: ...
+- [ ] **Smart Behaviors**: NPCs, boids, etc.
+- [ ] **Basic Joint Use**: ...
+- [x] **Forward Kinematics**: ...
+- [ ] **Software Engineering:**: *Make piles to not instantiate objects always, singletons...* ~~(I belive is that...)
+
+### "Extra" Elements that can be changed for sound later :)
+- [ ] **Fluid simulation**: Water, geisers, wind...
+- [ ] **Advanced Joint**: ~~No freaking idea~~
+- [ ] **Autonomous Contraptions/Hierarchies**: Is like a transformer or something with a lot of gears
+- [x] **Inverse Kinematics**: ...
+- [x] **Vehicle Mechanics**: ...
+
+<img src=requirements.jpg width="70%" height="50%">

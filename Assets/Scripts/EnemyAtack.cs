@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyAtack : MonoBehaviour
 {
@@ -10,12 +11,15 @@ public class EnemyAtack : MonoBehaviour
     [SerializeField] private float attackInterval;
     private float attackTime;
     private bool canAttack;
+    public bool isAiming;
 
     [Range (0, 360)]
     [SerializeField] private int FOVAngle;
 
     [Range(0, 100)]
-    [SerializeField] private int AttackDistance;
+    [SerializeField] private int _AttackDistance;
+    public int attackDistance { get { return _AttackDistance; } }
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -38,7 +42,7 @@ public class EnemyAtack : MonoBehaviour
             }
         attackTime += Time.deltaTime;
 
-        if (IsInFOV(target.position) && IsInDistance(target.position) && canAttack)
+        if (IsInFOV(target.position) && IsInDistance(target.position) && canAttack && isAiming)
         {
             Debug.Log("attacked");
             attackTime = 0;
@@ -54,6 +58,6 @@ public class EnemyAtack : MonoBehaviour
 
     private bool IsInDistance(Vector3 position)
     {
-        return (myTransform.position - position).magnitude < AttackDistance;
+        return (myTransform.position - position).magnitude < _AttackDistance;
     }
 }

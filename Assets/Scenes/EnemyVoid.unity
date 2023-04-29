@@ -576,6 +576,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: flockUnitPrefab
+      value: 
+      objectReference: {fileID: 1330431293574341271, guid: 3122ab90187bb0d46aa68a6c20a759be, type: 3}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: _aligementWeight
       value: 10
       objectReference: {fileID: 0}

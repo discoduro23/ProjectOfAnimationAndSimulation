@@ -10,6 +10,7 @@ public class DroneConstraption : MonoBehaviour
     public GameObject weapon;
     public Transform target;
     private EnemyAtack enemyAtack;
+    public Transform BoidControl;
 
     public float FOVAngle;
     public float weaponSpeed;
@@ -27,8 +28,11 @@ public class DroneConstraption : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rotorL.transform.localEulerAngles += new Vector3(0, 1, 0) * rotationSpeed * Time.deltaTime;
-        rotorR.transform.localEulerAngles += new Vector3(0, -1, 0) * rotationSpeed * Time.deltaTime;
+        transform.position = BoidControl.position;
+        //transform.rotation = Quaternion.EulerRotation(0, BoidControl.transform.rotation.eulerAngles.y, 0);
+        //transform.Rotate(Vector3.ProjectOnPlane( BoidControl.rotation.eulerAngles, transform.up));
+        //rotorL.transform.localEulerAngles += new Vector3(0, 1, 0) * rotationSpeed * Time.deltaTime;
+        //rotorR.transform.localEulerAngles += new Vector3(0, -1, 0) * rotationSpeed * Time.deltaTime;
         
         //aim the weapon to the target
         if(Vector3.Angle(transform.up, target.position - transform.position) >= FOVAngle && Vector3.Angle(-transform.up, target.position - transform.position) >= FOVAngle / 2 && target!=null && (target.position - transform.position).magnitude < trackDistance)

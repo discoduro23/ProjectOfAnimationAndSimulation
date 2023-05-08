@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FLock : MonoBehaviour
 {
     private GameObject fishParent;
+    private GameObject visibleParent;
     [Header("Spawn Setup")]
     [SerializeField] private FlockUnit flockUnitPrefab;
+    [SerializeField] private GameObject visiblePrefab;
     [SerializeField] private int flockSize;
     [SerializeField] private Vector3 spawnBounds;
 
@@ -80,6 +83,7 @@ public class FLock : MonoBehaviour
     public void Awake()
     {
         fishParent = new GameObject("fish Parent");
+        visibleParent = new GameObject("visible Parent");
         GenerateUnits();
     }
 
@@ -107,6 +111,9 @@ public class FLock : MonoBehaviour
             var spawnPosition = transform.position + randomVector;
             var rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
             allUnits[i] = Instantiate(flockUnitPrefab, spawnPosition, rotation);
+            var visiblePref = Instantiate(visiblePrefab, spawnPosition, Quaternion.identity);
+            visiblePref.GetComponent<DroneConstraption>().BoidControl = allUnits[i].gameObject.transform;
+            visiblePref.transform.parent = visibleParent.transform;
             allUnits[i].transform.parent = fishParent.transform;
             allUnits[i].AssignFlock(this);
             allUnits[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));

@@ -564,6 +564,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: visiblePrefab
+      value: 
+      objectReference: {fileID: 4227970437644023626, guid: b6a6f810667c6c64cab6baf3ce0a3187, type: 3}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: _cohesionWeight
       value: 7.22
       objectReference: {fileID: 0}
@@ -578,7 +582,7 @@ PrefabInstance:
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: flockUnitPrefab
       value: 
-      objectReference: {fileID: 1330431293574341271, guid: 3122ab90187bb0d46aa68a6c20a759be, type: 3}
+      objectReference: {fileID: 1330431293574341271, guid: 6df73086710eaff478989cc16b803556, type: 3}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: _aligementWeight
       value: 10

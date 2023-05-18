@@ -138,8 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackInterval: 5
-  FOVAngle: 30
-  AttackDistance: 10
+  isAiming: 0
+  FOVAngle: 60
+  _AttackDistance: 20
 --- !u!1001 &5745158649348148293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -147,6 +148,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 615200003916795472}
     m_Modifications:
+    - target: {fileID: 4227970436969617887, guid: b6a6f810667c6c64cab6baf3ce0a3187, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227970436969617887, guid: b6a6f810667c6c64cab6baf3ce0a3187, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227970436969617887, guid: b6a6f810667c6c64cab6baf3ce0a3187, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227970436969617887, guid: b6a6f810667c6c64cab6baf3ce0a3187, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227970436969617887, guid: b6a6f810667c6c64cab6baf3ce0a3187, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4227970437644023624, guid: b6a6f810667c6c64cab6baf3ce0a3187, type: 3}
       propertyPath: m_RootOrder
       value: 0

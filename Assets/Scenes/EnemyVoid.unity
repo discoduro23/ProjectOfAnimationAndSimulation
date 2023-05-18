@@ -556,12 +556,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2092013772}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: flockSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: _boundsWeight
       value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: _targetWeight
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: spawnBounds.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: spawnBounds.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: spawnBounds.z
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: visiblePrefab
@@ -592,12 +608,20 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: _cohesionDistance
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: _obstacleDistance
-      value: 6.15
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: _aligementDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: _avoidanceDistance
-      value: 0.76
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}

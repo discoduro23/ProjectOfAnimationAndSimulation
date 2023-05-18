@@ -5,68 +5,91 @@ using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 public class DroneConstraption : MonoBehaviour
 {
-    public GameObject rotorL;
-    public GameObject rotorR;
-    public GameObject weapon;
-    public Transform target;
-    private EnemyAtack enemyAtack;
+    public GameObject[] rotors;
     public Transform BoidControl;
+    private Transform myTransform;
+
+    public Transform target;
 
     public float FOVAngle;
+    public float FOVWeapon;
+    public float _AttackDistance;
+
+    public float attackTime;
+    public float attackInterval;
+    public bool canAttack;
+    public bool isAiming;
+    public GameObject weapon;
     public float weaponSpeed;
-    public float rotationSpeed;
     public float trackDistance;
+    public float FovUp;
+    public float FovDown;
 
     // Start is called before the first frame update
     void Start()
     {
-        target = GetComponentInParent<FlockUnit>().assignedFlock.target;
-        enemyAtack = GetComponentInParent<EnemyAtack>();
-        trackDistance = enemyAtack.attackDistance * 2;
+        myTransform = transform;   
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = BoidControl.position;
-        //transform.rotation = Quaternion.EulerRotation(BoidControl.transform.rotation.eulerAngles);
-        //Quaternion q;
-        //Vector3 a = crossproduct(v1, v2);
-        //q.xyz = a;
-        //q.w = sqrt((v1.Length ^ 2) * (v2.Length ^ 2)) + dotproduct(v1, v2);
 
-        //Vector3 vector3 = Vector3.Cross(transform.rotation.eulerAngles, Vector3.up);
-        //Quaternion q = Quaternion.identity;
-        //q.eulerAngles = vector3;
-        //
-        //q.w = Mathf.Sqrt((transform.rotation.eulerAngles.magnitude * transform.rotation.eulerAngles.magnitude) * (Vector3.up.magnitude * Vector3.up.magnitude)) + Vector3DotProduct(transform.rotation.eulerAngles, Vector3.up); 
-        //
-        //Quaternion fromtoUP = Quaternion.(transform.rotation.eulerAngles, Vector3.up);
-        //
-        //transform.rotation = fromtoUP * transform.rotation;
-        //
-        //Quaternion.FromToRotation(transform.rotation.eulerAngles, Vector3.Project( BoidControl.transform.rotation.eulerAngles, Vector3.up));
-
-        ///Primer paso Up actual y el del mundo y hacer FromToRotation, Multiplicar a izquierda con la rotacion 
-        ///alinear con la proyeccion con normal el Up y hacer FromToRotation.
-
-        if(Vector3.Angle(transform.up, target.position - transform.position) >= FOVAngle && Vector3.Angle(-transform.up, target.position - transform.position) >= FOVAngle / 2 && target!=null && (target.position - transform.position).magnitude < trackDistance)
+        foreach (var item in rotors)
+        {
+            item.transform.Rotate(Vector3.up * 50);
+        }
+        //Debug.Log("angleToUp" + Vector3.Angle(transform.up, transform.position - target.transform.position) + "AngleTODOWN" + Vector3.Angle(-transform.up, transform.position - target.transform.position));
+        if(Vector3.Angle(transform.up,  transform.position - target.transform.position ) > FovUp && Vector3.Angle(-transform.up, transform.position - target.transform.position) > FovDown)
         {
             var targetRotation = Quaternion.LookRotation(target.position - weapon.transform.position);
-            enemyAtack.isAiming = true;
             // Smoothly rotate towards the target point.
             weapon.transform.rotation = Quaternion.Slerp(weapon.transform.rotation, targetRotation, weaponSpeed * Time.deltaTime);
+        }
 
+        Debug.Log(Vector3.Angle(weapon.transform.forward, target.position - weapon.transform.position));
+        if(Vector3.Angle(weapon.transform.forward, target.position - weapon.transform.position) <= FOVWeapon)
+        {
+            Debug.Log("inPosition");
+            isAiming = true;
         }
         else
         {
-            enemyAtack.isAiming=false;
+            isAiming=false;
         }
-        //weapon.transform.LookAt(target.transform.position);
+
+        if (attackTime > attackInterval)
+        {
+            canAttack = true;
+        }
+        attackTime += Time.deltaTime;
+
+        if (IsInFOV(target.position) && IsInDistance(target.position) && canAttack && isAiming)
+        {
+            Debug.Log("attacked");
+            attackTime = 0;
+            canAttack = false;
+
+        }
+
     }
+
+
+    private bool IsInFOV(Vector3 position)
+    {
+        return Vector3.Angle(myTransform.forward, position - myTransform.position) <= FOVAngle;
+    }
+
+    private bool IsInDistance(Vector3 position)
+    {
+        return (myTransform.position - position).magnitude < _AttackDistance;
+    }
+
 }

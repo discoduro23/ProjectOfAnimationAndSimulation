@@ -114,6 +114,7 @@ public class FLock : MonoBehaviour
             var visiblePref = Instantiate(visiblePrefab, spawnPosition, Quaternion.identity);
             visiblePref.GetComponent<DroneConstraption>().BoidControl = allUnits[i].gameObject.transform;
             visiblePref.transform.parent = visibleParent.transform;
+            visiblePref.GetComponent<DroneConstraption>().target = target;
             allUnits[i].transform.parent = fishParent.transform;
             allUnits[i].AssignFlock(this);
             allUnits[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));

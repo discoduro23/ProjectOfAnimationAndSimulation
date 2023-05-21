@@ -53,10 +53,11 @@ public class IKFabrik : MonoBehaviour
         else
         {
             // Set the default position of the end effector
-            Vector3 tempDefPosition = joints[0].transform.position + defaultPosition;
+            Vector3 defaultDirection = this.transform.rotation * Vector3.forward;
+            Vector3 tempDefPosition = joints[0].transform.position + defaultDirection * defaultPosition.magnitude;
             smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, tempDefPosition, ref velocity, smoothTime);
+            smoothTempTarget.rotation = Quaternion.LookRotation(defaultDirection, Vector3.up);
             solverIterationsLocal = 1;
-
         }
         IKSolver();
     }

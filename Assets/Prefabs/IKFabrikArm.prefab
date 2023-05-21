@@ -93,6 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6534409203352519066}
   - component: {fileID: 6534409203352519065}
+  - component: {fileID: 6534409204339184233}
+  - component: {fileID: 6534409204339184230}
   m_Layer: 0
   m_Name: IKFabrikArm
   m_TagString: Untagged
@@ -141,6 +143,35 @@ MonoBehaviour:
   target: {fileID: 0}
   smoothTime: 0.3
   sphericalRadiusPresence: 20
+--- !u!54 &6534409204339184233
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6534409203352519064}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &6534409204339184230
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6534409203352519064}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 20.045622
+  m_Center: {x: 1.2378197, y: 10.4446945, z: -12.524546}
 --- !u!1 &6534409203709969724
 GameObject:
   m_ObjectHideFlags: 0

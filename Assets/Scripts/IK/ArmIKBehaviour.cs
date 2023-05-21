@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class IKFabrik : MonoBehaviour
+public class ArmIKBehaviour : MonoBehaviour
 {
     [SerializeField] Transform[] joints; // The joints of the chain
     float[] lengthJoints; // length of each joint
@@ -42,24 +42,27 @@ public class IKFabrik : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if the target is in the sphere
-        if (Vector3.Distance(target.transform.position, joints[0].position) < sphericalRadiusPresence)
+        if (target != null)
         {
-            Vector3 targetPosition = target.transform.position;
-            smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, targetPosition, ref velocity, smoothTime);
+            // Check if the target is in the sphere
+            if (Vector3.Distance(target.transform.position, joints[0].position) < sphericalRadiusPresence)
+            {
+                Vector3 targetPosition = target.transform.position;
+                smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, targetPosition, ref velocity, smoothTime);
 
-            solverIterationsLocal = solverIterations;
+                solverIterationsLocal = solverIterations;
+            }
+            else
+            {
+                // Set the default position of the end effector
+                Vector3 defaultDirection = this.transform.rotation * Vector3.forward;
+                Vector3 tempDefPosition = joints[0].transform.position + defaultDirection * defaultPosition.magnitude;
+                smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, tempDefPosition, ref velocity, smoothTime);
+                smoothTempTarget.rotation = Quaternion.LookRotation(defaultDirection, Vector3.up);
+                solverIterationsLocal = 1;
+            }
+            IKSolver();
         }
-        else
-        {
-            // Set the default position of the end effector
-            Vector3 defaultDirection = this.transform.rotation * Vector3.forward;
-            Vector3 tempDefPosition = joints[0].transform.position + defaultDirection * defaultPosition.magnitude;
-            smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, tempDefPosition, ref velocity, smoothTime);
-            smoothTempTarget.rotation = Quaternion.LookRotation(defaultDirection, Vector3.up);
-            solverIterationsLocal = 1;
-        }
-        IKSolver();
     }
 
     void IKSolver()
@@ -177,5 +180,26 @@ public class IKFabrik : MonoBehaviour
         Gizmos.DrawWireSphere(joints[0].position, sphericalRadiusPresence);
         
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Mine")) 
+        {
+            Debug.Log("Mine detected");
+            target = other.gameObject;
+
+            float nearDistance = Vector3.Distance(target.transform.position, joints[joints.Length - 1].position);
+
+            if (nearDistance < 1.5)
+            {
+                // Make the last joint rotate like a drill
+                joints[joints.Length - 1].Rotate(Vector3.up * 100 * Time.deltaTime);
+
+                other.gameObject.gameObject.GetComponent<MaterialMineBehaveour>().Mine();
+            }
+            
+        }
+    }
+    
 }
     

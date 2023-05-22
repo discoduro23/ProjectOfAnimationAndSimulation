@@ -7,7 +7,7 @@ public class ArmIKBehaviour : MonoBehaviour
 {
     [SerializeField] Transform[] joints; // The joints of the chain
     float[] lengthJoints; // length of each joint
-    
+
     [SerializeField] int solverIterations = 10; // How many times to run the solver
     private int solverIterationsLocal = 1;
 
@@ -16,9 +16,14 @@ public class ArmIKBehaviour : MonoBehaviour
     private Transform smoothTempTarget = null; // The target position temporal, to have smooth
     [SerializeField] float smoothTime = 0.3f;
     Vector3 velocity = Vector3.zero;
-    
+
     [SerializeField] float sphericalRadiusPresence = 0.1f; // The radius of the sphere that the target is in
-    
+
+    [SerializeField] float nearDistance = 0.5f;
+
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -164,42 +169,42 @@ public class ArmIKBehaviour : MonoBehaviour
     }
 
 
-    // Only a function to draw the joints in the scene
     void OnDrawGizmos()
     {
-        // Set gizmo color
         Gizmos.color = Color.red;
 
-        // Draw a line between each joint
         for (int i = 0; i < joints.Length - 1; i++)
         {
             Gizmos.DrawLine(joints[i].position, joints[i + 1].position);
         }
 
-        // Draw a sphere in the target position
         Gizmos.DrawWireSphere(joints[0].position, sphericalRadiusPresence);
-        
+
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Mine")) 
+        if (other.CompareTag("Mine"))
         {
             Debug.Log("Mine detected");
             target = other.gameObject;
 
-            float nearDistance = Vector3.Distance(target.transform.position, joints[joints.Length - 1].position);
+            float distance = Vector3.Distance(target.transform.position, joints[joints.Length - 1].position);
 
-            if (nearDistance < 1.5)
+            if (distance < nearDistance)
             {
-                // Make the last joint rotate like a drill
-                joints[joints.Length - 1].Rotate(Vector3.up * 100 * Time.deltaTime);
-
+                joints[joints.Length - 1].LookAt(target.transform);
                 other.gameObject.gameObject.GetComponent<MaterialMineBehaveour>().Mine();
             }
-            
+
+        }
+        else if(other.CompareTag("Build"))
+        {
+            Debug.Log("Build Detected");
+            target = other.gameObject;
+
+
         }
     }
-    
+
 }
-    

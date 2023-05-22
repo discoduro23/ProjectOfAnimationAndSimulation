@@ -5,6 +5,7 @@ using UnityEngine;
 public class MaterialMineBehaveour : MonoBehaviour
 {
     public bool CanMine = true;
+    public float timeToMine = 0.25f;
 
     public void Mine()
     {
@@ -27,7 +28,7 @@ public class MaterialMineBehaveour : MonoBehaviour
 
     IEnumerator MineCoroutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(timeToMine);
 
         // Scale down the object gradually
         transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);

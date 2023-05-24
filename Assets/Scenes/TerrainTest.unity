@@ -899,6 +899,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6534409204339184233, guid: bd3f6b80758294b4c88cfe60741f0427, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd3f6b80758294b4c88cfe60741f0427, type: 3}
 --- !u!1 &2059131353

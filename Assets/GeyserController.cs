@@ -29,7 +29,6 @@ public class GeyserController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //Reset the velocity and the drag force
             velocity = 0f;
             dragForce = 0f;
         }

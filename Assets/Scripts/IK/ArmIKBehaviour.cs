@@ -42,32 +42,30 @@ public class ArmIKBehaviour : MonoBehaviour
 
         // Set the solver iterations
         solverIterationsLocal = solverIterations;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target != null)
+        if (target != null && Vector3.Distance(target.transform.position, joints[0].position) < sphericalRadiusPresence)
         {
-            // Check if the target is in the sphere
-            if (Vector3.Distance(target.transform.position, joints[0].position) < sphericalRadiusPresence)
-            {
-                Vector3 targetPosition = target.transform.position;
-                smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, targetPosition, ref velocity, smoothTime);
+            Vector3 targetPosition = target.transform.position;
+            smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, targetPosition, ref velocity, smoothTime);
 
-                solverIterationsLocal = solverIterations;
-            }
-            else
-            {
-                // Set the default position of the end effector
-                Vector3 defaultDirection = this.transform.rotation * Vector3.forward;
-                Vector3 tempDefPosition = joints[0].transform.position + defaultDirection * defaultPosition.magnitude;
-                smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, tempDefPosition, ref velocity, smoothTime);
-                smoothTempTarget.rotation = Quaternion.LookRotation(defaultDirection, Vector3.up);
-                solverIterationsLocal = 1;
-            }
-            IKSolver();
+            solverIterationsLocal = solverIterations;
         }
+        else
+        {
+            // Set the default position of the end effector
+            Vector3 defaultDirection = this.transform.rotation * Vector3.forward;
+            Vector3 tempDefPosition = joints[0].transform.position + defaultDirection * defaultPosition.magnitude;
+            smoothTempTarget.position = Vector3.SmoothDamp(smoothTempTarget.position, tempDefPosition, ref velocity, smoothTime);
+            smoothTempTarget.rotation = Quaternion.LookRotation(defaultDirection, Vector3.up);
+            solverIterationsLocal = 1;
+        }
+        IKSolver();
     }
 
     void IKSolver()
@@ -198,7 +196,7 @@ public class ArmIKBehaviour : MonoBehaviour
             }
 
         }
-        else if(other.CompareTag("Build"))
+        else if (other.CompareTag("Build"))
         {
             Debug.Log("Build Detected");
             target = other.gameObject;

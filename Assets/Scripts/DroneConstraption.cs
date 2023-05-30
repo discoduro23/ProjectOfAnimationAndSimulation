@@ -80,7 +80,7 @@ public class DroneConstraption : MonoBehaviour
             bullet.transform.position = muzzle.transform.position;
             bullet.transform.rotation = muzzle.transform.rotation;
             bullet.SetActive(true);
-            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.up * 10;
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.up * 100;
             attackTime = 0;
             canAttack = false;
 

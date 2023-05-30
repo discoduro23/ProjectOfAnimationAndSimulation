@@ -52,7 +52,10 @@ public class SoundManager : Singleton<SoundManager>
         {
             GameObject source = new GameObject("AudioSource");
             source.transform.parent = audiosourcesparent.transform;
-            source.AddComponent<AudioSource>();
+            AudioSource audio = source.AddComponent<AudioSource>();
+            audio.spatialBlend = 1;
+            audio.loop = false;
+            audio.minDistance = 10;
             Audiosources.Add(source);
         }
         radioGalaxia.priority = 150;
@@ -109,7 +112,7 @@ public class SoundManager : Singleton<SoundManager>
             int counter = 0;
             while (!soundPlayed || Audiosources.Count < counter)
             {
-                if (!roverAudioSources[counter].isPlaying)
+                if (!Audiosources[counter].GetComponent<AudioSource>().isPlaying)
                 {
                     soundPlayed = true;
                     Audiosources[counter].GetComponent<AudioSource>().clip = audioClips.GetValueOrDefault(soundName);

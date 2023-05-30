@@ -600,7 +600,7 @@ MonoBehaviour:
   isAiming: 0
   weapon: {fileID: 4227970437015044427}
   weaponSpeed: 10
-  trackDistance: 10011.28
+  trackDistance: 20
   FovUp: 45
   FovDown: 60
   muzzle: {fileID: 1990600194809157862}

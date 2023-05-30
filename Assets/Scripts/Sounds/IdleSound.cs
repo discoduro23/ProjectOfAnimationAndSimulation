@@ -38,13 +38,13 @@ public class IdleSound : MonoBehaviour
             peak = false;
             peakending = true;
             motor.volume = m_Volume + VolumeU.Evaluate(timer % 4);
-            motor.pitch = m_Volume + PitchU.Evaluate(timer % 4);
+            motor.pitch = m_Pitch + PitchU.Evaluate(timer % 4);
             if(timer%4 >= 3.8) peakending = false;
         }
         else
         {
             motor.volume = m_Volume + VolumeD.Evaluate(timer % 4);
-            motor.pitch = m_Volume + PitchD.Evaluate(timer % 4);
+            motor.pitch = m_Pitch + PitchD.Evaluate(timer % 4);
         }
         
     }

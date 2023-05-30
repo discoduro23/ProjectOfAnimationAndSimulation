@@ -22,7 +22,11 @@ public class FlockUnit : MonoBehaviour
     private Vector3 currentObstacleAvoidanceVector;
     private float speed;
 
+    bool targeteing = false;
+
     public Transform myTransform { get; set; }
+
+    public GameObject RotorSound;
 
     private void Awake()
     {
@@ -83,7 +87,14 @@ public class FlockUnit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (RotorSound != null)
+        {
+            if (RotorSound.GetComponent<AudioSource>().isPlaying)
+            {
+                RotorSound.transform.position = transform.position;
+            }
+
+        }
     }
 
     private void FindNeighbours()
@@ -237,7 +248,18 @@ public class FlockUnit : MonoBehaviour
     {
         if (assignedFlock.target == null) { return Vector3.zero; }
         Vector3 directionToTarget = -(myTransform.position - assignedFlock.target.position);
-        if (directionToTarget.magnitude > assignedFlock.targetDistance) { return Vector3.zero; }
+        if (directionToTarget.magnitude > assignedFlock.targetDistance && !targeteing) { return Vector3.zero; }
+        targeteing = true;
+
+        if (RotorSound == null)
+        {
+            RotorSound = SoundManager.Instance.CreateSound("Rotor");
+        }
+        else if (!RotorSound.GetComponent<AudioSource>().isPlaying) RotorSound = SoundManager.Instance.CreateSound("Rotor");
+
+
+        if (directionToTarget.magnitude <= assignedFlock.obstacleDistance*2) return -directionToTarget.normalized;
+
         return directionToTarget.normalized;
     }
 

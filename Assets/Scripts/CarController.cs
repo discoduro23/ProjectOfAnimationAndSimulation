@@ -87,7 +87,6 @@ public class CarController : MonoBehaviour
         Quaternion rot;
         wheelCollider.GetComponent<WheelCollider>().GetWorldPose(out pos, out rot);
         wheelModel.transform.position = pos;
-        wheelModel.transform.localPosition += new Vector3(-0.5f, 0, 0);
 
         // Rotate the wheel so it's upright and facing the correct direction
         wheelModel.transform.rotation = rot;

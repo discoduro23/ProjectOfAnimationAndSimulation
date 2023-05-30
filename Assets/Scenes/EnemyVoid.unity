@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 2092013769}
   m_Layer: 0
   m_Name: target
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -559,6 +559,10 @@ PrefabInstance:
       propertyPath: flockSize
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: shootPrefab
+      value: 
+      objectReference: {fileID: 2529811610750581062, guid: 11bcffc469269854caedabb2a553a038, type: 3}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: _boundsWeight
       value: 1.26

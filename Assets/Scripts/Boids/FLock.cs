@@ -80,11 +80,26 @@ public class FLock : MonoBehaviour
     public FlockUnit[] allUnits { get; set; }
     // Start is called before the first frame update
 
+    private GameObject ShootPoll;
+    private List<GameObject> ShootList;
+    public int shootPollCount = 100;
+    public GameObject shootPrefab;
+
     public void Awake()
     {
         fishParent = new GameObject("fish Parent");
         visibleParent = new GameObject("visible Parent");
         GenerateUnits();
+
+        ShootPoll = new GameObject("Shoot Pool");
+        ShootList = new List<GameObject>();
+        for (int i = 0; i < shootPollCount; i++)
+        {
+            var shoot = Instantiate(shootPrefab);
+            shoot.gameObject.SetActive(false);
+            ShootList.Add(shoot.gameObject);
+            shoot.transform.parent = ShootPoll.transform;
+        }
     }
 
     void Start()
@@ -119,5 +134,20 @@ public class FLock : MonoBehaviour
             allUnits[i].AssignFlock(this);
             allUnits[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
         }
+    }
+
+    public GameObject Shoot()
+    {
+        //get an inactive bullet from the shootList
+        //get a bullet from the shootList
+        for (int i = 0; i < ShootList.Count; i++)
+        {
+            if (!ShootList[i].gameObject.activeInHierarchy)
+            {
+                ShootList[i].gameObject.SetActive(true);
+                return ShootList[i];
+            }
+        }
+        return null;
     }
 }

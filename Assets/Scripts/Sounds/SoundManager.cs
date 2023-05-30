@@ -55,6 +55,7 @@ public class SoundManager : Singleton<SoundManager>
             source.AddComponent<AudioSource>();
             Audiosources.Add(source);
         }
+        radioGalaxia.priority = 150;
     }
 
     // Update is called once per frame

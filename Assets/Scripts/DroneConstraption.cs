@@ -30,6 +30,7 @@ public class DroneConstraption : MonoBehaviour
     public float trackDistance;
     public float FovUp;
     public float FovDown;
+    public GameObject muzzle;
 
     // Start is called before the first frame update
     void Start()
@@ -54,10 +55,10 @@ public class DroneConstraption : MonoBehaviour
             weapon.transform.rotation = Quaternion.Slerp(weapon.transform.rotation, targetRotation, weaponSpeed * Time.deltaTime);
         }
 
-        Debug.Log(Vector3.Angle(weapon.transform.forward, target.position - weapon.transform.position));
+        //Debug.Log(Vector3.Angle(weapon.transform.forward, target.position - weapon.transform.position));
         if(Vector3.Angle(weapon.transform.forward, target.position - weapon.transform.position) <= FOVWeapon)
         {
-            Debug.Log("inPosition");
+            //Debug.Log("inPosition");
             isAiming = true;
         }
         else
@@ -74,6 +75,12 @@ public class DroneConstraption : MonoBehaviour
         if (IsInFOV(target.position) && IsInDistance(target.position) && canAttack && isAiming)
         {
             Debug.Log("attacked");
+
+            GameObject bullet = BoidControl.GetComponent<FlockUnit>().assignedFlock.Shoot();
+            bullet.transform.position = muzzle.transform.position;
+            bullet.transform.rotation = muzzle.transform.rotation;
+            bullet.SetActive(true);
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.up * 10;
             attackTime = 0;
             canAttack = false;
 

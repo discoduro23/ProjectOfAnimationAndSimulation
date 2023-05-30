@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Mine
   - Build
+  - Ground
   layers:
   - Default
   - TransparentFX

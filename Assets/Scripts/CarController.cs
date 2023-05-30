@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    public bool carMode = true;
     public GameObject wheelFL;
     public GameObject wheelFR;
     public GameObject wheelBL;
@@ -13,6 +14,10 @@ public class CarController : MonoBehaviour
     public GameObject visibleTierFR;
     public GameObject visibleTierBL;
     public GameObject visibleTierBR;
+    private WheelCollider wheelColliderFL;
+    private WheelCollider wheelColliderFR;
+    private WheelCollider wheelColliderBL;
+    private WheelCollider wheelColliderBR;
 
     public float maxSteerAngle = 30;
     public float motorForce = 50;
@@ -24,40 +29,48 @@ public class CarController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = centerOfMass.transform.localPosition;
+        wheelColliderFL = wheelFL.GetComponent<WheelCollider>();
+        wheelColliderFR = wheelFR.GetComponent<WheelCollider>();
+        wheelColliderBL = wheelBL.GetComponent<WheelCollider>();
+        wheelColliderBR = wheelBR.GetComponent<WheelCollider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //add force to wheels based on input
-        wheelFL.GetComponent<WheelCollider>().motorTorque = Input.GetAxis("Vertical") * motorForce;
-        wheelFR.GetComponent<WheelCollider>().motorTorque = Input.GetAxis("Vertical") * motorForce;
-
-        //steer wheels based on input
-        wheelFL.GetComponent<WheelCollider>().steerAngle = Input.GetAxis("Horizontal") * maxSteerAngle;
-        wheelFR.GetComponent<WheelCollider>().steerAngle  = Input.GetAxis("Horizontal") * maxSteerAngle;
-
-        //Breaks based on input
-        if (Input.GetKey(KeyCode.Space))
+        if(carMode)
         {
-            wheelFL.GetComponent<WheelCollider>().brakeTorque = 1000;
-            wheelFR.GetComponent<WheelCollider>().brakeTorque = 1000;
-            wheelBL.GetComponent<WheelCollider>().brakeTorque = 1000;
-            wheelBR.GetComponent<WheelCollider>().brakeTorque = 1000;
-        }
-        else
-        {
-            wheelFL.GetComponent<WheelCollider>().brakeTorque = 0;
-            wheelFR.GetComponent<WheelCollider>().brakeTorque = 0;
-            wheelBL.GetComponent<WheelCollider>().brakeTorque = 0;
-            wheelBR.GetComponent<WheelCollider>().brakeTorque = 0;
-        }
+            //add force to wheels based on input
+            wheelFL.GetComponent<WheelCollider>().motorTorque = Input.GetAxis("Vertical") * motorForce;
+            wheelFR.GetComponent<WheelCollider>().motorTorque = Input.GetAxis("Vertical") * motorForce;
 
-        //update wheel visuals
-        UpdateWheelVisuals(wheelFL, visibleTierFL);
-        UpdateWheelVisuals(wheelFR, visibleTierFR);
-        UpdateWheelVisuals(wheelBL, visibleTierBL);
-        UpdateWheelVisuals(wheelBR, visibleTierBR);
+            //steer wheels based on input
+            wheelFL.GetComponent<WheelCollider>().steerAngle = Input.GetAxis("Horizontal") * maxSteerAngle;
+            wheelFR.GetComponent<WheelCollider>().steerAngle = Input.GetAxis("Horizontal") * maxSteerAngle;
+
+            //Breaks based on input
+            if (Input.GetKey(KeyCode.Space))
+            {
+                wheelColliderFL.brakeTorque = 1000;
+                wheelColliderFR.brakeTorque = 1000;
+                wheelColliderBL.brakeTorque = 1000;
+                wheelColliderBR.brakeTorque = 1000;
+            }
+            else
+            {
+                wheelColliderFL.brakeTorque = 0;
+                wheelColliderFR.brakeTorque = 0;
+                wheelColliderBL.brakeTorque = 0;
+                wheelColliderBR.brakeTorque = 0;
+            }
+
+            //update wheel visuals
+            UpdateWheelVisuals(wheelFL, visibleTierFL);
+            UpdateWheelVisuals(wheelFR, visibleTierFR);
+            UpdateWheelVisuals(wheelBL, visibleTierBL);
+            UpdateWheelVisuals(wheelBR, visibleTierBR);
+        }
+        
         
     }
 
@@ -71,7 +84,7 @@ public class CarController : MonoBehaviour
 
         // Rotate the wheel so it's upright and facing the correct direction
         wheelModel.transform.rotation = rot;
-        wheelModel.transform.rotation *= Quaternion.Euler(0, 90, 0);
+        //wheelModel.transform.rotation *= Quaternion.Euler(0, 180, 0);
 
         // keep wheel proportions  while rotating
         wheelModel.transform.localScale = new Vector3(wheelModel.transform.localScale.x, wheelModel.transform.localScale.y, wheelModel.transform.localScale.z);

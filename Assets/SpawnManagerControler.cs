@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SpawnManagerControler : MonoBehaviour
 {
-    //Terrain for the heights
-    [SerializeField] Terrain terrain = null;
 
     //The prefab to spawn
     [SerializeField] GameObject prefab = null;
@@ -13,69 +11,40 @@ public class SpawnManagerControler : MonoBehaviour
     //The number of prefabs to spawn
     [SerializeField] int numberOfPrefabs = 4;
 
-    //The dimension of the cube to spawn (will be the same as terrain but a little bit smaller)
-    [SerializeField] Vector3 dimensions = Vector3.zero;
+    //The dimensions of the cube where the prefabs will be spawned
+    [SerializeField] Vector3 cubeDimensions = Vector3.one;
 
-    //The height of the cube to spawn
-    [SerializeField] float height = 0.0f;
+    //When spawning an object it's needed to throw a raycast to the -y direction to know where to spawn it, getting the normals of that point and spawning acordingly
+    [SerializeField] float raycastDistance = 10f;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Get the terrain data
-        TerrainData terrainData = terrain.terrainData;
-
-        //Get the terrain size
-        Vector3 terrainSize = terrainData.size;
-
-        //Set the dimensions of the cube to spawn
-        dimensions = new Vector3(terrainSize.x - 3, terrainSize.y - 3, terrainSize.z - 3);
-
-        //Set the height of the cube to spawn
-        height = terrainSize.y;
-
-        //Spawn the prefabs
-        SpawnPrefabs();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    //Spawn the prefabs
-    void SpawnPrefabs()
-    {
         //Spawn the prefabs
         for (int i = 0; i < numberOfPrefabs; i++)
         {
-            //Get a random position
-            Vector3 randomPosition = new Vector3(Random.Range(0, dimensions.x), Random.Range(0, dimensions.y), Random.Range(0, dimensions.z));
+            //Get a random position inside the cube
+            Vector3 randomPosition = new Vector3(Random.Range(-cubeDimensions.x / 2, cubeDimensions.x / 2), Random.Range(-cubeDimensions.y / 2, cubeDimensions.y / 2), Random.Range(-cubeDimensions.z / 2, cubeDimensions.z / 2));
 
-            //Get the height of the terrain at the random position
-            float heightTerrain = terrain.SampleHeight(randomPosition);
+            //Throw a raycast to the -y direction to know where to spawn the prefab
+            RaycastHit hit;
+            if (Physics.Raycast(randomPosition, Vector3.down, out hit, raycastDistance))
+            {
+                //Instantiate the prefab
+                GameObject go = Instantiate(prefab, hit.point, Quaternion.identity);
 
-            //Set the position of the prefab
-            randomPosition.y = heightTerrain + height;
-
-            //Instantiate the prefab
-            Instantiate(prefab, randomPosition, Quaternion.identity);
+                //Set the rotation of the prefab to the normal of the point where it was spawned
+                go.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            }
         }
     }
 
-    //Draw the cube
+
     private void OnDrawGizmos()
     {
-        //Set the color
         Gizmos.color = Color.red;
-
-        //Draw the cube
-        Gizmos.DrawWireCube(transform.position, dimensions);
+        Gizmos.DrawWireCube(transform.position, cubeDimensions);
     }
-
-
-
-
+    
 
 }

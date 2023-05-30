@@ -182,6 +182,9 @@ public class ArmIKBehaviour : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+
+        joints[joints.Length - 1].LookAt(other.gameObject.transform);
+        
         if (other.CompareTag("Mine"))
         {
             Debug.Log("Mine detected");
@@ -191,15 +194,21 @@ public class ArmIKBehaviour : MonoBehaviour
 
             if (distance < nearDistance)
             {
-                joints[joints.Length - 1].LookAt(target.transform);
                 other.gameObject.gameObject.GetComponent<MaterialMineBehaveour>().Mine();
             }
 
         }
         else if (other.CompareTag("Build"))
         {
-            Debug.Log("Build Detected");
+            Debug.Log("Repare Detected");
             target = other.gameObject;
+
+            float distance = Vector3.Distance(target.transform.position, joints[joints.Length - 1].position);
+
+            if (distance < nearDistance)
+            {
+                other.gameObject.gameObject.GetComponent<RepareAntenaBehaveour>().Repare();
+            }
 
 
         }

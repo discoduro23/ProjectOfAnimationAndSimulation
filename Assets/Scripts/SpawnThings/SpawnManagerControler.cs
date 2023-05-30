@@ -6,7 +6,7 @@ public class SpawnManagerControler : MonoBehaviour
 {
 
     //The prefab to spawn
-    [SerializeField] GameObject prefab = null;
+    [SerializeField] GameObject prefabMine = null;
 
     //The number of prefabs to spawn
     [SerializeField] int numberOfPrefabs = 4;
@@ -52,7 +52,7 @@ public class SpawnManagerControler : MonoBehaviour
                 Debug.Log("Raycast hit at " + hit.point + " with normal " + hit.normal + "grounded? " + hit.collider.gameObject.tag);
                 
                     //Instantiate the prefab
-                    GameObject go = Instantiate(prefab, hit.point, Quaternion.identity);
+                    GameObject go = Instantiate(prefabMine, hit.point, Quaternion.identity);
 
                     //Set the rotation of the prefab to the normal of the point where it was spawned
                     go.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);

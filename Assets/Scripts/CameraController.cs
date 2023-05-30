@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
     public GameObject target, positioner;
     public float speed;
     Vector3 vel = Vector3.zero;
+    public float changeAngle = 0.5f;
+    public float changeSpeed = 100f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,18 @@ public class CameraController : MonoBehaviour
     {
         Vector3 targetpos = positioner.transform.position;
         transform.position = Vector3.SmoothDamp(transform.position, targetpos, ref vel, speed);
-        transform.LookAt(target.transform.position + Vector3.up * -4f);
+
+
+
+        var targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+
+        // Smoothly rotate towards the target point.
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, changeSpeed * Time.deltaTime);
+
+        //if(Vector3.Angle(transform.forward, target.transform.position) > changeAngle)
+        //{
+        //    transform.LookAt(target.transform.position + Vector3.up * -4f);
+        //}
+
     }
 }

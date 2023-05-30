@@ -1,3 +1,4 @@
+using QuantumTek.QuantumTravel;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,6 +8,7 @@ public class FLock : MonoBehaviour
 {
     private GameObject fishParent;
     private GameObject visibleParent;
+    public QT_Minimap Minimap;
     [Header("Spawn Setup")]
     [SerializeField] private FlockUnit flockUnitPrefab;
     [SerializeField] private GameObject visiblePrefab;
@@ -130,6 +132,7 @@ public class FLock : MonoBehaviour
             visiblePref.GetComponent<DroneConstraption>().BoidControl = allUnits[i].gameObject.transform;
             visiblePref.transform.parent = visibleParent.transform;
             visiblePref.GetComponent<DroneConstraption>().target = target;
+            Minimap.AddMarker(visiblePref.GetComponent<QT_MapObject>(), false);
             allUnits[i].transform.parent = fishParent.transform;
             allUnits[i].AssignFlock(this);
             allUnits[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));

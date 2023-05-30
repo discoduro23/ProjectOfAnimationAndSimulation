@@ -70,6 +70,13 @@ public class CarController : MonoBehaviour
             UpdateWheelVisuals(wheelBL, visibleTierBL);
             UpdateWheelVisuals(wheelBR, visibleTierBR);
         }
+        else
+        {
+            wheelColliderFL.brakeTorque = 10000;
+            wheelColliderFR.brakeTorque = 10000;
+            wheelColliderBL.brakeTorque = 10000;
+            wheelColliderBR.brakeTorque = 10000;
+        }
         
         
     }

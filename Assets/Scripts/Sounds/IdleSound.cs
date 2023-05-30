@@ -6,17 +6,54 @@ public class IdleSound : MonoBehaviour
 {
     public AudioSource motor;
 
-    public AnimationCurve Volume;
-    public AnimationCurve Pitch;
+    public AnimationCurve VolumeD;
+    public AnimationCurve PitchD;
+    public AnimationCurve VolumeU;
+    public AnimationCurve PitchU;
+
+    public float m_Volume;
+    public float m_Pitch;
+    private bool peak = false;
+    private bool peakending = false;
+
+    public int randomMinTimer = 0;
+    public int randomMaxTimer = 10;
+    private void Start()
+    {
+        
+        motor.volume = m_Volume;
+        motor.pitch = m_Pitch ;
+        Invoke("soundactivation", Random.Range(randomMinTimer, randomMaxTimer));
+    }
 
 
     private void FixedUpdate()
     {
         float timer = Time.time;
-        motor.volume = Volume.Evaluate(Time.time % 1);
-        motor.pitch = Pitch.Evaluate(Time.time % 1);
+
+        
+
+        if((timer%4 <= 0.2 && peak) || peakending)
+        {
+            peak = false;
+            peakending = true;
+            motor.volume = m_Volume + VolumeU.Evaluate(timer % 4);
+            motor.pitch = m_Volume + PitchU.Evaluate(timer % 4);
+            if(timer%4 >= 3.8) peakending = false;
+        }
+        else
+        {
+            motor.volume = m_Volume + VolumeD.Evaluate(timer % 4);
+            motor.pitch = m_Volume + PitchD.Evaluate(timer % 4);
+        }
+        
     }
 
+    void soundactivation()
+    {
+        peak = true;
+        Invoke("soundactivation", Random.Range(randomMinTimer, randomMaxTimer));
+    }
 
 
 

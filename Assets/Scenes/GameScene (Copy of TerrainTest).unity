@@ -1696,6 +1696,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1440720680}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: _maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
+      propertyPath: _minSpeed
+      value: 5.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: shootPrefab
       value: 
       objectReference: {fileID: 2529811610750581062, guid: 11bcffc469269854caedabb2a553a038, type: 3}
@@ -1709,7 +1717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: spawnBounds.x
-      value: 20
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: spawnBounds.y
@@ -1717,7 +1725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: spawnBounds.z
-      value: 20
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: visiblePrefab
@@ -1733,7 +1741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: _targetDistance
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2129002517580246031, guid: 14cdc7a314782ec4db0beb31899d98c6, type: 3}
       propertyPath: flockUnitPrefab

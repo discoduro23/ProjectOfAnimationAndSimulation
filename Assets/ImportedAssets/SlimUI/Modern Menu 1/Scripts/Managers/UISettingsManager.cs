@@ -68,14 +68,7 @@ namespace SlimUI.ModernMenu{
 			else if(Screen.fullScreen == false){
 				fullscreentext.GetComponent<TMP_Text>().text = "off";
 			}
-
-			// check hud value
-			if(PlayerPrefs.GetInt("ShowHUD")==0){
-				showhudtext.GetComponent<TMP_Text>().text = "off";
-			}
-			else{
-				showhudtext.GetComponent<TMP_Text>().text = "on";
-			}
+			
 			
 
 			// check shadow distance/enabled

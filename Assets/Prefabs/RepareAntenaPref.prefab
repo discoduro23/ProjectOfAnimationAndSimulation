@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8983416977737052593}
   - component: {fileID: 8942229422540868469}
   - component: {fileID: 9007017617830834507}
+  - component: {fileID: 802386816078268864}
   m_Layer: 0
   m_Name: RepareAntenaPref
   m_TagString: Build
@@ -148,6 +149,19 @@ MonoBehaviour:
   beamPlace: {fileID: 7795587279471099826}
   antena: {fileID: 9005748904372313299}
   timeToRepare: 30
+--- !u!114 &802386816078268864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9005238559640797361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd079535c66d444285c085774f3b43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: 619687a9c0af6e348aff52b0a531e78a, type: 2}
 --- !u!1 &9005579613913307083
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3786886619289222823}
   - component: {fileID: 3786886619289222827}
   - component: {fileID: 3786886619289222824}
+  - component: {fileID: 762316956870583453}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Mine
@@ -71,6 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mineralMine: {fileID: 8086773022719970061}
   timeToMine: 10
+  initialSize: 0.2
 --- !u!54 &3786886619289222824
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -87,6 +89,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &762316956870583453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786886619289222817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd079535c66d444285c085774f3b43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: 3e2e7205d3e2a8541a32d4219b702d07, type: 2}
 --- !u!1001 &8086773022719774075
 PrefabInstance:
   m_ObjectHideFlags: 0

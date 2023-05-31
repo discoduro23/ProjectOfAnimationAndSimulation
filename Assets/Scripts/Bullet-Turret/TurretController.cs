@@ -61,7 +61,7 @@ public class TurretController : MonoBehaviour
                 currentHSpeed = Mathf.MoveTowards(currentHSpeed, 0, forceBreak * accelH * dt);
             }
 
-            Debug.Log(Turret2.transform.rotation.eulerAngles);
+            //Debug.Log(Turret2.transform.rotation.eulerAngles);
 
             if (Input.GetAxis("Vertical") > 0 && (Turret2.transform.eulerAngles.x > FovUpAndgle || Turret2.transform.eulerAngles.x < 90))
             {

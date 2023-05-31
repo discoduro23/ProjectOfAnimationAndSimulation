@@ -1,5 +1,7 @@
+using QuantumTek.QuantumTravel;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class SpawnManagerControler : MonoBehaviour
@@ -22,10 +24,17 @@ public class SpawnManagerControler : MonoBehaviour
     //When spawning an object it's needed to throw a raycast to the -y direction to know where to spawn it, getting the normals of that point and spawning acordingly
     [SerializeField] float raycastDistance = 50f;
 
+    public QT_Minimap map;
+
+    private GameObject mines;
+    private GameObject geysers;
+
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SpawnPrefabs());
+        mines = new GameObject("Mines");
+        geysers = new GameObject("Geysers");
     }
 
     private IEnumerator SpawnPrefabs()
@@ -53,7 +62,8 @@ public class SpawnManagerControler : MonoBehaviour
                 {
                     //Instantiate the prefab
                     GameObject go = Instantiate(prefabMine, hit.point, Quaternion.identity);
-
+                    map.AddMarker(go.GetComponent<QT_MapObject>(), false);
+                    go.transform.parent = mines.transform;
                     //Set the rotation of the prefab to the normal of the point where it was spawned
                     go.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 }
@@ -86,7 +96,7 @@ public class SpawnManagerControler : MonoBehaviour
                 {
                     //Instantiate the prefab
                     GameObject go = Instantiate(prefabGeyser, hit.point, Quaternion.identity);
-
+                    go.transform.parent = geysers.transform;
                     //Set the rotation of the prefab to the normal of the point where it was spawned
                     go.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 }

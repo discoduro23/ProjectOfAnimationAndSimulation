@@ -71,11 +71,7 @@ public class CarController : MonoBehaviour
                 wheelColliderBR.brakeTorque = 0;
             }
 
-            //update wheel visuals
-            UpdateWheelVisuals(wheelFL, visibleTierFL);
-            UpdateWheelVisuals(wheelFR, visibleTierFR);
-            UpdateWheelVisuals(wheelBL, visibleTierBL);
-            UpdateWheelVisuals(wheelBR, visibleTierBR);
+            
         }
         else
         {
@@ -84,7 +80,11 @@ public class CarController : MonoBehaviour
             wheelColliderBL.brakeTorque = 10000;
             wheelColliderBR.brakeTorque = 10000;
         }
-        
+        //update wheel visuals
+            UpdateWheelVisuals(wheelFL, visibleTierFL);
+            UpdateWheelVisuals(wheelFR, visibleTierFR);
+            UpdateWheelVisuals(wheelBL, visibleTierBL);
+            UpdateWheelVisuals(wheelBR, visibleTierBR);
         
     }
 

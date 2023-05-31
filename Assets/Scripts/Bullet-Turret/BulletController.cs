@@ -5,9 +5,12 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public GameManagerController gameManagerController;
+
     void Start()
     {
-        
+        gameManagerController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManagerController>();
     }
 
     private void OnEnable()
@@ -25,12 +28,15 @@ public class BulletController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("morite puto");
+            //Debug.Log("morite puto");
+            gameManagerController.life -= 5;
         }
         else if(collision.gameObject.GetComponent<DroneConstraption>() != null)
         {
             collision.gameObject.GetComponent<DroneConstraption>().BoidControl.gameObject.SetActive(false);
             Destroy (collision.gameObject);
+            GameObject sound = SoundManager.instance.CreateSound("DroneExplosion");
+            sound.transform.position = transform.position;
         }
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;

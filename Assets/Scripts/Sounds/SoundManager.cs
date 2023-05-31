@@ -17,6 +17,7 @@ public class SoundManager : Singleton<SoundManager>
     public GameObject rover;
 
     public int numAudioSources = 20;
+    public float volumeAudioSources = 0.4f;
     private List<GameObject> Audiosources = new List<GameObject>();
     private GameObject audiosourcesparent;
 
@@ -53,6 +54,7 @@ public class SoundManager : Singleton<SoundManager>
             GameObject source = new GameObject("AudioSource");
             source.transform.parent = audiosourcesparent.transform;
             AudioSource audio = source.AddComponent<AudioSource>();
+            source.GetComponent<AudioSource>().volume = volumeAudioSources;
             audio.spatialBlend = 1;
             audio.loop = false;
             audio.minDistance = 10;
@@ -81,6 +83,17 @@ public class SoundManager : Singleton<SoundManager>
                 int randomClip = UnityEngine.Random.Range(0, radioGalaxiaInterclip.Count);
                 radioGalaxia.clip = radioGalaxiaInterclip[randomClip];
                 radioGalaxia.Play();
+            }
+        }
+
+        foreach (var source in Audiosources)
+        {
+            if (source.activeInHierarchy)
+            {
+                if(source.GetComponent<AudioSource>().isPlaying == false)
+                {
+                    source.SetActive(false);
+                }
             }
         }
     }

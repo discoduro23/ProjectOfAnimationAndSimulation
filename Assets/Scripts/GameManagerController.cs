@@ -27,6 +27,8 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
 
     [SerializeField] private BigShipController bigShip = null;
 
+    public CameraTransitionController cameras;
+
     private void Start()
     {
         adviseZonnite.text = "";
@@ -90,14 +92,14 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
 
             horizontalProgressBar.GetComponent<ProgressBarPro>().SetValue(life, 100);
 
-            infoTxt.text = "Antenas Repared: " + antenasRepared + "/" + antenasToRepare + "\n" +
+            infoTxt.text = "Antenas Repaired: " + antenasRepared + "/" + antenasToRepare + "\n" +
                 "Zonnites: " + materialPicked + "/" + materialToPickForAntena;
         }
         else
         {
             if (!isEndCongratulations)
             {
-                // CAMERA CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+               cameras.endgame = true;
                isEndCongratulations = true;
                bigShip.StartCoroutine(bigShip.MoveShip());
             }

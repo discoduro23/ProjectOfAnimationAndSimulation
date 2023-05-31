@@ -23,7 +23,8 @@ public class CarController : MonoBehaviour
     public float motorForce = 50;
     private Rigidbody rb;
     public GameObject centerOfMass;
-   
+    private bool releasedAccel;
+    private bool releasedBrake;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,14 +51,31 @@ public class CarController : MonoBehaviour
 
             if (Input.GetAxis("Vertical") < 0.1f)
             {
+                releasedAccel = false;
                 wheelColliderFL.brakeTorque = 100;
                 wheelColliderFR.brakeTorque = 100;
+            }
+            else if(!releasedAccel)
+            {
+                releasedAccel = true;
+                GameObject sound = SoundManager.instance.CreateSound("Acceleration");
+                sound.transform.position = transform.position;
             }
 
 
             //Breaks based on input
             if (Input.GetKey(KeyCode.Space))
             {
+                if(releasedBrake)
+                {
+                    GameObject sound = SoundManager.instance.CreateSound("Brake");
+                    sound.GetComponent<AudioSource>().volume = 0.2f;
+                    sound.transform.position = transform.position;
+                    releasedBrake = false;
+                }
+                
+                
+
                 wheelColliderFL.brakeTorque = 1000;
                 wheelColliderFR.brakeTorque = 1000;
                 wheelColliderBL.brakeTorque = 500;
@@ -69,9 +87,11 @@ public class CarController : MonoBehaviour
                 wheelColliderFR.brakeTorque = 0;
                 wheelColliderBL.brakeTorque = 0;
                 wheelColliderBR.brakeTorque = 0;
+                releasedBrake = true;
+
             }
 
-            
+
         }
         else
         {

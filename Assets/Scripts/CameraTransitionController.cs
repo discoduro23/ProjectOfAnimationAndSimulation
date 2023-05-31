@@ -1,6 +1,7 @@
 using EasyTransition;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 public class CameraTransitionController : MonoBehaviour
@@ -10,8 +11,10 @@ public class CameraTransitionController : MonoBehaviour
 
     public GameObject Camera1;
     public GameObject Camera2;
+    public GameObject CameraEnd;
 
     TransitionManager transitionManager;
+    public bool endgame = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,12 @@ public class CameraTransitionController : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.C))
         {
             transitionManager.onTransitionCutPointReached += ActivateTransition;
+            transitionManager.Transition(transition, StartDelay);
+        }
+        if (endgame)
+        {
+            endgame = false;
+            transitionManager.onTransitionCutPointReached += finaltransition;
             transitionManager.Transition(transition, StartDelay);
         }
     }
@@ -51,5 +60,14 @@ public class CameraTransitionController : MonoBehaviour
         }
 
         transitionManager.onTransitionCutPointReached -= ActivateTransition;
+    }
+
+    public void finaltransition()
+    {
+        Camera1.SetActive (false);
+        Camera2.SetActive (false);
+        CameraEnd.SetActive (true);
+        transitionManager.onTransitionCutPointReached -= finaltransition;
+
     }
 }

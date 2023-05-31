@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerController : SingletonNotPersistent<GameManagerController>
 {
@@ -20,6 +21,7 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
 
     public TextMeshProUGUI adviseZonnite = null;
     public TextMeshProUGUI infoTxt = null;
+    public TextMeshProUGUI bigtitle = null;
     private bool isAdviseShow = false;
 
     [SerializeField] private GameObject circularProgressBar = null;
@@ -45,7 +47,6 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
         {
             if (!isAdviseShow)
             {
-                Debug.Log("Opps, no material");
                 isAdviseShow = true;
                 StartCoroutine(adviseTimer());
             }
@@ -72,6 +73,7 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
         adviseZonnite.text = "You need " + (materialToPickForAntena - materialPicked) + " Zonnites to repare the antena";
         yield return new WaitForSeconds(2);
         adviseZonnite.text = "";
+        bigtitle.text = "";
         isAdviseShow = false;
 
     }
@@ -93,18 +95,26 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
 
             horizontalProgressBar.GetComponent<ProgressBarPro>().SetValue(life, 100);
 
-            infoTxt.text = "Antenas Repaired: " + antenasRepared + "/" + antenasToRepare + "\n" +
+            infoTxt.text = "Antennas Repaired: " + antenasRepared + "/" + antenasToRepare + "\n" +
                 "Zonnites: " + materialPicked + "/" + materialToPickForAntena;
         }
         else
         {
             if (!isEndCongratulations)
             {
-               cameras.endgame = true;
-               isEndCongratulations = true;
-               bigShip.StartCoroutine(bigShip.MoveShip());
+                cameras.endgame = true;
+                isEndCongratulations = true;
+                bigShip.StartCoroutine(bigShip.MoveShip());
             }
         }
+    }
+
+    IEnumerator showCongrats()
+    {
+        yield return new WaitForSeconds(2);
+        bigtitle.text = "Congratulations! You repaired all the antennas and the ship is ready to take you home!";
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene("MainMenu");
     }
 
 }

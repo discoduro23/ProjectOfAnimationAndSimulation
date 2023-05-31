@@ -4623,6 +4623,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1811106701650761297, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: forceBreak
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811106701650761297, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: FovUpAndgle
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811106701650761297, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: FovDownAngle
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6534409202603196885, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
       propertyPath: nearDistance
       value: 1.5

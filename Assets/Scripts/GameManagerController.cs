@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class GameManagerController : SingletonNotPersistent<GameManagerController>
 {
+    [SerializeField] private bool isEndCongratulations = false;
+
     public int life = 100;
-    
+
     public int antenasRepared = 0;
     public int antenasToRepare = 4;
 
@@ -23,14 +25,16 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
     [SerializeField] private GameObject circularProgressBar = null;
     [SerializeField] private GameObject horizontalProgressBar = null;
 
+    [SerializeField] private BigShipController bigShip = null;
+
     private void Start()
     {
         adviseZonnite.text = "";
     }
-    
+
     public bool RequestRepair()
     {
-        if(materialPicked >= materialToPickForAntena)
+        if (materialPicked >= materialToPickForAntena)
         {
             return true;
         }
@@ -71,21 +75,33 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
 
     private void Update()
     {
-        if (isPercentage)
+        if (antenasRepared < antenasToRepare)
         {
-            circularProgressBar.SetActive(true);
-            circularProgressBar.GetComponent<ProgressBarPro>().SetValue(percentage, 100);
+            if (isPercentage)
+            {
+                circularProgressBar.SetActive(true);
+                circularProgressBar.GetComponent<ProgressBarPro>().SetValue(percentage, 100);
+            }
+            else
+            {
+                circularProgressBar.SetActive(false);
+                circularProgressBar.GetComponent<ProgressBarPro>().SetValue(0, 100);
+            }
+
+            horizontalProgressBar.GetComponent<ProgressBarPro>().SetValue(life, 100);
+
+            infoTxt.text = "Antenas Repared: " + antenasRepared + "/" + antenasToRepare + "\n" +
+                "Zonnites: " + materialPicked + "/" + materialToPickForAntena;
         }
         else
         {
-            circularProgressBar.SetActive(false);
-            circularProgressBar.GetComponent<ProgressBarPro>().SetValue(0, 100);
+            if (!isEndCongratulations)
+            {
+                // CAMERA CHANGE
+               isEndCongratulations = true;
+               bigShip.StartCoroutine(bigShip.MoveShip());
+            }
         }
-
-        horizontalProgressBar.GetComponent<ProgressBarPro>().SetValue(life, 100);
-
-        infoTxt.text = "Antenas Repared: " + antenasRepared + "/" + antenasToRepare + "\n" +
-            "Zonnites: " + materialPicked + "/" + materialToPickForAntena;
     }
 
 }

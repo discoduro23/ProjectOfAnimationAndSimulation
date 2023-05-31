@@ -82,8 +82,7 @@ namespace SlimUI.ModernMenu{
 
 		void Start(){
 			CameraObject = transform.GetComponent<Animator>();
-
-			playMenu.SetActive(false);
+			
 			exitMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(false);
 			firstMenu.SetActive(true);
@@ -131,7 +130,6 @@ namespace SlimUI.ModernMenu{
 		}
 
 		public void ReturnMenu(){
-			playMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(false);
 			exitMenu.SetActive(false);
 			mainMenu.SetActive(true);
@@ -142,13 +140,9 @@ namespace SlimUI.ModernMenu{
 				StartCoroutine(LoadAsynchronously(scene));
 			}
 		}
-
-		public void  DisablePlayCampaign(){
-			playMenu.SetActive(false);
-		}
+		
 
 		public void Position2(){
-			DisablePlayCampaign();
 			CameraObject.SetFloat("Animate",1);
 		}
 
@@ -157,22 +151,11 @@ namespace SlimUI.ModernMenu{
 		}
 
 		void DisablePanels(){
-			PanelControls.SetActive(false);
 			PanelVideo.SetActive(false);
 			PanelGame.SetActive(false);
-			PanelKeyBindings.SetActive(false);
 
 			lineGame.SetActive(false);
-			lineControls.SetActive(false);
 			lineVideo.SetActive(false);
-			lineKeyBindings.SetActive(false);
-
-			PanelMovement.SetActive(false);
-			lineMovement.SetActive(false);
-			PanelCombat.SetActive(false);
-			lineCombat.SetActive(false);
-			PanelGeneral.SetActive(false);
-			lineGeneral.SetActive(false);
 		}
 
 		public void GamePanel(){
@@ -187,39 +170,7 @@ namespace SlimUI.ModernMenu{
 			lineVideo.SetActive(true);
 		}
 
-		public void ControlsPanel(){
-			DisablePanels();
-			PanelControls.SetActive(true);
-			lineControls.SetActive(true);
-		}
-
-		public void KeyBindingsPanel(){
-			DisablePanels();
-			MovementPanel();
-			PanelKeyBindings.SetActive(true);
-			lineKeyBindings.SetActive(true);
-		}
-
-		public void MovementPanel(){
-			DisablePanels();
-			PanelKeyBindings.SetActive(true);
-			PanelMovement.SetActive(true);
-			lineMovement.SetActive(true);
-		}
-
-		public void CombatPanel(){
-			DisablePanels();
-			PanelKeyBindings.SetActive(true);
-			PanelCombat.SetActive(true);
-			lineCombat.SetActive(true);
-		}
-
-		public void GeneralPanel(){
-			DisablePanels();
-			PanelKeyBindings.SetActive(true);
-			PanelGeneral.SetActive(true);
-			lineGeneral.SetActive(true);
-		}
+		
 
 		public void PlayHover(){
 			hoverSound.Play();
@@ -237,14 +188,12 @@ namespace SlimUI.ModernMenu{
 		public void AreYouSure(){
 			exitMenu.SetActive(true);
 			if(extrasMenu) extrasMenu.SetActive(false);
-			DisablePlayCampaign();
 		}
 
 		public void AreYouSureMobile(){
 			exitMenu.SetActive(true);
 			if(extrasMenu) extrasMenu.SetActive(false);
 			mainMenu.SetActive(false);
-			DisablePlayCampaign();
 		}
 
 		public void ExtrasMenu(){

@@ -38,7 +38,7 @@ public class MaterialMineBehaveour : MonoBehaviour
             {
                 if (!audioSource.isPlaying)
                 {
-
+                    audioSource = SoundManager.instance.CreateSound("Mining").GetComponent<AudioSource>();
                 }
             }
             // Reducir el tamaño de la mina de mineral

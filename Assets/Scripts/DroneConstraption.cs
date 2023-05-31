@@ -98,5 +98,4 @@ public class DroneConstraption : MonoBehaviour
     {
         return (myTransform.position - position).magnitude < _AttackDistance;
     }
-
 }

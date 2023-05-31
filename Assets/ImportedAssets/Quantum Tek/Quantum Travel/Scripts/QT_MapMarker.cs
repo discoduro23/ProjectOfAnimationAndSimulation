@@ -32,5 +32,10 @@ namespace QuantumTek.QuantumTravel
 
         public void SetScale(Vector2 scale)
         { rectTransform.localScale = scale; }
+
+        public void hideMarker()
+        {
+            image.enabled = false;
+        }
     }
 }

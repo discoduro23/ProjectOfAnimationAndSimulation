@@ -30,7 +30,7 @@ public class BulletController : MonoBehaviour
         else if(collision.gameObject.GetComponent<DroneConstraption>() != null)
         {
             collision.gameObject.GetComponent<DroneConstraption>().BoidControl.gameObject.SetActive(false);
-            collision.gameObject.SetActive(false);
+            Destroy (collision.gameObject);
         }
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;

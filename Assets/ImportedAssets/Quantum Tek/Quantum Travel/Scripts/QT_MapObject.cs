@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 namespace QuantumTek.QuantumTravel
 {
@@ -11,6 +12,7 @@ namespace QuantumTek.QuantumTravel
     {
         public QT_MapMarkerData Data;
 
+        
         public Vector2 Position (QT_MapType type) => new Vector2(transform.position.x, type == QT_MapType.Map3D ? transform.position.z : transform.position.y);
     }
 }

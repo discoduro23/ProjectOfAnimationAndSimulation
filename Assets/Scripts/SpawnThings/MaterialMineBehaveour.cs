@@ -1,3 +1,4 @@
+using QuantumTek.QuantumTravel;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,7 @@ public class MaterialMineBehaveour : MonoBehaviour
     public void Mine()
     {
         if (timeMining > timeToMine)
-        {
+        { 
             GameManagerController.Instance.MiningCompleted();
             Destroy(gameObject);
         }

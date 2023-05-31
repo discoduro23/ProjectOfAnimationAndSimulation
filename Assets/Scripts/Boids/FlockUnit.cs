@@ -28,6 +28,7 @@ public class FlockUnit : MonoBehaviour
 
     public GameObject RotorSound;
 
+
     private void Awake()
     {
         myTransform = transform;
@@ -44,6 +45,7 @@ public class FlockUnit : MonoBehaviour
 
     public void MoveUnit()
     {
+        
         FindNeighbours();
         CalculateSpeed();
 

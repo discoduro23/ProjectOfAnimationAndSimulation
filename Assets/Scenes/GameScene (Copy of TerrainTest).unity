@@ -4920,7 +4920,7 @@ MonoBehaviour:
   infoTxt: {fileID: 341724791}
   circularProgressBar: {fileID: 404598837}
   horizontalProgressBar: {fileID: 346618020}
-  bigShip: {fileID: 1772960943}
+  bigShip: {fileID: 0}
 --- !u!4 &1433603471
 Transform:
   m_ObjectHideFlags: 0
@@ -4955,6 +4955,18 @@ PrefabInstance:
       propertyPath: roverEngine
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: numAudioSources
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: sounds.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: sounds.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 43634918140141e4785d7492aa7d4f57, type: 3}
     - target: {fileID: 1458596267218601842, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
       propertyPath: m_Name
       value: Rover

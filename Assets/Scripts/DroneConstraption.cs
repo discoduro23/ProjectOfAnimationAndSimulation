@@ -74,8 +74,9 @@ public class DroneConstraption : MonoBehaviour
 
         if (IsInFOV(target.position) && IsInDistance(target.position) && canAttack && isAiming)
         {
-            Debug.Log("attacked");
-
+            //Debug.Log("attacked");
+            GameObject sound = SoundManager.instance.CreateSound("Shoot3");
+            sound.transform.position = muzzle.transform.position;
             GameObject bullet = BoidControl.GetComponent<FlockUnit>().assignedFlock.Shoot();
             bullet.transform.position = muzzle.transform.position;
             bullet.transform.rotation = muzzle.transform.rotation;

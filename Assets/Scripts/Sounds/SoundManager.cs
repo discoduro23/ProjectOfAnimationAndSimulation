@@ -16,7 +16,7 @@ public class SoundManager : Singleton<SoundManager>
 
     public GameObject rover;
 
-    public int numAudioSources = 10;
+    public int numAudioSources = 20;
     private List<GameObject> Audiosources = new List<GameObject>();
     private GameObject audiosourcesparent;
 
@@ -57,6 +57,7 @@ public class SoundManager : Singleton<SoundManager>
             audio.loop = false;
             audio.minDistance = 10;
             Audiosources.Add(source);
+            source.SetActive(false);
         }
         radioGalaxia.priority = 150;
     }
@@ -107,6 +108,7 @@ public class SoundManager : Singleton<SoundManager>
 
     public GameObject CreateSound(string soundName)
     {
+        int countSounds = 0;
         if (audioClips.ContainsKey(soundName))
         {
 
@@ -114,9 +116,27 @@ public class SoundManager : Singleton<SoundManager>
             {
                 if (!Audiosources[i].GetComponent<AudioSource>().isPlaying)
                 {
+                    Audiosources[i].SetActive(true);
                     Audiosources[i].GetComponent<AudioSource>().clip = audioClips.GetValueOrDefault(soundName);
                     Audiosources[i].GetComponent<AudioSource>().Play();
                     return Audiosources[i];
+                }
+            }
+            for (int i = 0; i < Audiosources.Count; i++)
+            {
+                if (Audiosources[i].GetComponent<AudioSource>().clip.name == "Rotor")
+                {
+                    if(countSounds < 2)
+                    {
+                        countSounds++;
+                    }
+                    else
+                    {
+                        Audiosources[i].SetActive(true);
+                        Audiosources[i].GetComponent<AudioSource>().clip = audioClips.GetValueOrDefault(soundName);
+                        Audiosources[i].GetComponent<AudioSource>().Play();
+                        return Audiosources[i];
+                    }
                 }
             }
         }

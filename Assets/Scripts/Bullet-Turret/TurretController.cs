@@ -87,6 +87,8 @@ public class TurretController : MonoBehaviour
                 {
                     if (!bullets[i].activeInHierarchy)
                     {
+                        GameObject sound = SoundManager.instance.CreateSound("Shoot3");
+                        sound.transform.position = transform.position;
                         bullets[i].SetActive(true);
                         bullets[i].transform.position = bulletSpawn.transform.position;
                         bullets[i].GetComponent<Rigidbody>().AddForce(bulletSpawn.transform.up * bulletSpeed, ForceMode.Acceleration);

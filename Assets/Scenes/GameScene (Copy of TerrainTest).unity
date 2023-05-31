@@ -4967,6 +4967,66 @@ PrefabInstance:
       propertyPath: sounds.Array.data[7]
       value: 
       objectReference: {fileID: 8300000, guid: 43634918140141e4785d7492aa7d4f57, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaClips.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ff453ffefa1ed1478945ecd398bb059, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7201c1a35e53c8e4faadfc94be4100fc, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3c1ebb68e1cb16f4fb61dfcbd8f9872d, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 59ea9742b33f8af4e8591b2519f64ab9, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: bac8a9969336a844ea246742902fb51e, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaInterclip.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaInterclip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: f890062b34a60be4fabe03e099213e7d, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaInterclip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: ab66576aca6c1574fa3cbe267443879c, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaInterclip.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: d1421dac0973d4647881bf2fbf5e8171, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaInterclip.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: ffb9ac71715917d4aa2291d1b9ccbadf, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaInterclip.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 149e3394cae11084e8bd428b3c50f9ad, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaInterclip.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 66142aa18966609408b9819ce891dc55, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaInterclip.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: a79fabd5830788b4fa745cea7f63dc1d, type: 3}
+    - target: {fileID: 686771875221120065, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
+      propertyPath: radioGalaxiaInterclip.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 16dbab6c0441dde46af79c0e66c3ba81, type: 3}
     - target: {fileID: 1458596267218601842, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
       propertyPath: m_Name
       value: Rover
@@ -4981,7 +5041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1458596267218601843, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.76
+      value: 36.35
       objectReference: {fileID: 0}
     - target: {fileID: 1458596267218601843, guid: dcb32d08dba2d354191dc532d490cb78, type: 3}
       propertyPath: m_LocalPosition.z

@@ -14,7 +14,7 @@ public class MaterialMineBehaveour : MonoBehaviour
     private float percentage = 0f;
 
     [SerializeField] private float initialSize = 0.2f;
-
+    AudioSource audioSource;
         
     private void Start()
     {
@@ -30,7 +30,17 @@ public class MaterialMineBehaveour : MonoBehaviour
         else
         {
             timeMining += Time.deltaTime;
+            if(audioSource == null)
+            {
+                audioSource = SoundManager.instance.CreateSound("Mining").GetComponent<AudioSource>();
+            }
+            else
+            {
+                if (!audioSource.isPlaying)
+                {
 
+                }
+            }
             // Reducir el tamaño de la mina de mineral
             float scalePercentage = initialSize - (timeMining / timeToMine*0.2f) * initialSize;
             mineralMine.transform.localScale = new Vector3(scalePercentage, scalePercentage, scalePercentage);

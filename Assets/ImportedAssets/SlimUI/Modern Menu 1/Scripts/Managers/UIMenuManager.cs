@@ -89,7 +89,9 @@ namespace SlimUI.ModernMenu{
 			mainMenu.SetActive(true);
 
 			SetThemeColors();
-		}
+
+            Cursor.lockState = CursorLockMode.None;
+        }
 
 		void SetThemeColors()
 		{
@@ -152,18 +154,10 @@ namespace SlimUI.ModernMenu{
 
 		void DisablePanels(){
 			PanelVideo.SetActive(false);
-			PanelGame.SetActive(false);
-
-			lineGame.SetActive(false);
+			
 			lineVideo.SetActive(false);
 		}
-
-		public void GamePanel(){
-			DisablePanels();
-			PanelGame.SetActive(true);
-			lineGame.SetActive(true);
-		}
-
+		
 		public void VideoPanel(){
 			DisablePanels();
 			PanelVideo.SetActive(true);

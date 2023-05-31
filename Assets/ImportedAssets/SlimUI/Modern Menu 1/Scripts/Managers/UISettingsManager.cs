@@ -58,9 +58,7 @@ namespace SlimUI.ModernMenu{
 
 		public void  Start (){
 
-			// check slider values
-			musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
-
+			
 			// check full screen
 			if(Screen.fullScreen == true){
 				fullscreentext.GetComponent<TMP_Text>().text = "on";

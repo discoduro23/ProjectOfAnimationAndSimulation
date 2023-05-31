@@ -4,34 +4,40 @@ using UnityEngine;
 
 public class MaterialMineBehaveour : MonoBehaviour
 {
-    public bool CanMine = true;
-    public float timeToMine = 0.25f;
+
+    // Mina de mineral
+    public GameObject mineralMine;
+
+    public float timeToMine = 15f;
+    private float timeMining = 0f;
+    private float percentage = 0f;
+
+    [SerializeField] private float initialSize = 0.2f;
+
+        
+    private void Start()
+    {
+    }
 
     public void Mine()
     {
-        if (CanMine)
+        if (timeMining > timeToMine)
         {
-            if (transform.localScale.x <= 0.5f && transform.localScale.y <= 0.5f && transform.localScale.z <= 0.5f)
-            {
-                Destroy(gameObject);
-
-                // 1 MATERIAL MORE
-            }
-            else
-            {
-                CanMine = false;
-                StartCoroutine(MineCoroutine());
-            }
-
+            GameManagerController.Instance.MiningCompleted();
+            Destroy(gameObject);
         }
-    }
+        else
+        {
+            timeMining += Time.deltaTime;
 
-    IEnumerator MineCoroutine()
-    {
-        yield return new WaitForSeconds(timeToMine);
+            // Reducir el tamaño de la mina de mineral
+            float scalePercentage = initialSize - (timeMining / timeToMine*0.2f) * initialSize;
+            mineralMine.transform.localScale = new Vector3(scalePercentage, scalePercentage, scalePercentage);
 
-        // Scale down the object gradually
-        transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
-        CanMine = true;
+            GameManagerController.Instance.isPercentage = true;
+            percentage = timeMining / timeToMine * 100;
+            GameManagerController.Instance.percentage = percentage;
+        }
+
     }
 }

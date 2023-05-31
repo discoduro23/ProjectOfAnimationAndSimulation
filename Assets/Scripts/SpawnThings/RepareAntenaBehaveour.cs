@@ -12,7 +12,7 @@ public class RepareAntenaBehaveour : MonoBehaviour
     //Antena
     public GameObject antena;
 
-    public float timeToRepare = 15f;
+    public float timeToRepare = 30f;
     private float timeReparing = 0f;
     private float percentage = 0f;
 
@@ -43,6 +43,7 @@ public class RepareAntenaBehaveour : MonoBehaviour
                 GameManagerController.Instance.percentage = percentage;
 
             }
+            Debug.Log("Time" + timeReparing);
         }
         
     }

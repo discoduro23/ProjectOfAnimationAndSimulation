@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-<<<<<<< Updated upstream
-=======
     path: Assets/Scenes/MainMenu.unity
     guid: a8ab80e9134a1f240ba59fb48cd420a2
   - enabled: 1
->>>>>>> Stashed changes
     path: Assets/Scenes/GameScene (Copy of TerrainTest).unity
     guid: c81441756e5310740b6b9df68b958d8b
   m_configObjects: {}

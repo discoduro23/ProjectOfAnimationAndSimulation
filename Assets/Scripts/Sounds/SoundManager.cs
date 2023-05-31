@@ -66,6 +66,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (!radioGalaxia.isPlaying)
         {
+            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
             if(radioGalaxiaIsSong)
             {
                 int randomClip = UnityEngine.Random.Range(0, radioGalaxiaClips.Count);

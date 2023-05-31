@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameManagerController : Singleton<GameManagerController>
+public class GameManagerController : SingletonNotPersistent<GameManagerController>
 {
     public int life = 100;
     
@@ -17,7 +17,11 @@ public class GameManagerController : Singleton<GameManagerController>
     public bool isPercentage = false;
 
     public TextMeshProUGUI adviseZonnite = null;
+    public TextMeshProUGUI infoTxt = null;
     private bool isAdviseShow = false;
+
+    [SerializeField] private GameObject circularProgressBar = null;
+    [SerializeField] private GameObject horizontalProgressBar = null;
 
     private void Start()
     {
@@ -50,6 +54,12 @@ public class GameManagerController : Singleton<GameManagerController>
         materialPicked -= materialToPickForAntena;
     }
 
+    public void MiningCompleted()
+    {
+        isPercentage = false;
+        materialPicked++;
+    }
+
     IEnumerator adviseTimer()
     {
         adviseZonnite.text = "You need " + (materialToPickForAntena - materialPicked) + " Zonnites to repare the antena";
@@ -59,6 +69,23 @@ public class GameManagerController : Singleton<GameManagerController>
 
     }
 
+    private void Update()
+    {
+        if (isPercentage)
+        {
+            circularProgressBar.SetActive(true);
+            circularProgressBar.GetComponent<ProgressBarPro>().SetValue(percentage, 100);
+        }
+        else
+        {
+            circularProgressBar.SetActive(false);
+            circularProgressBar.GetComponent<ProgressBarPro>().SetValue(0, 100);
+        }
 
+        horizontalProgressBar.GetComponent<ProgressBarPro>().SetValue(life, 100);
+
+        infoTxt.text = "Antenas Repared: " + antenasRepared + "/" + antenasToRepare + "\n" +
+            "Zonnites: " + materialPicked + "/" + materialToPickForAntena;
+    }
 
 }

@@ -19,7 +19,7 @@ public class ArmIKBehaviour : MonoBehaviour
 
     [SerializeField] float sphericalRadiusPresence = 0.1f; // The radius of the sphere that the target is in
 
-    [SerializeField] float nearDistance = 0.5f;
+    [SerializeField] float nearDistance = 1;
 
 
 
@@ -196,6 +196,10 @@ public class ArmIKBehaviour : MonoBehaviour
             {
                 other.gameObject.gameObject.GetComponent<MaterialMineBehaveour>().Mine();
             }
+            else
+            {
+                GameManagerController.instance.isPercentage = false;
+            }
 
         }
         else if (other.CompareTag("Build"))
@@ -208,6 +212,10 @@ public class ArmIKBehaviour : MonoBehaviour
             if (distance < nearDistance)
             {
                 other.gameObject.gameObject.GetComponent<RepareAntenaBehaveour>().Repare();
+            }
+            else
+            {
+                GameManagerController.instance.isPercentage = false;
             }
 
 

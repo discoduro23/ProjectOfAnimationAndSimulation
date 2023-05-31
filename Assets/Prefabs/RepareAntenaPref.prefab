@@ -147,7 +147,7 @@ MonoBehaviour:
   beamPrefab: {fileID: 198444651772138970, guid: e421cbe6c4a05084f878ebbdd9aace47, type: 3}
   beamPlace: {fileID: 7795587279471099826}
   antena: {fileID: 9005748904372313299}
-  timeToRepare: 15
+  timeToRepare: 30
 --- !u!1 &9005579613913307083
 GameObject:
   m_ObjectHideFlags: 0

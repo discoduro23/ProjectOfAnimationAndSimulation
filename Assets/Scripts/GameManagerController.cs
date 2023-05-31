@@ -97,7 +97,7 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
         {
             if (!isEndCongratulations)
             {
-                // CAMERA CHANGE
+                // CAMERA CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                isEndCongratulations = true;
                bigShip.StartCoroutine(bigShip.MoveShip());
             }

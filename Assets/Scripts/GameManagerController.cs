@@ -32,6 +32,7 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
     private void Start()
     {
         adviseZonnite.text = "";
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public bool RequestRepair()

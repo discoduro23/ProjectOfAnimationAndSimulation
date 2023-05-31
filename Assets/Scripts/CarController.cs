@@ -48,13 +48,20 @@ public class CarController : MonoBehaviour
             wheelFL.GetComponent<WheelCollider>().steerAngle = Input.GetAxis("Horizontal") * maxSteerAngle;
             wheelFR.GetComponent<WheelCollider>().steerAngle = Input.GetAxis("Horizontal") * maxSteerAngle;
 
+            if (Input.GetAxis("Vertical") < 0.1f)
+            {
+                wheelColliderFL.brakeTorque = 100;
+                wheelColliderFR.brakeTorque = 100;
+            }
+
+
             //Breaks based on input
             if (Input.GetKey(KeyCode.Space))
             {
                 wheelColliderFL.brakeTorque = 1000;
                 wheelColliderFR.brakeTorque = 1000;
-                wheelColliderBL.brakeTorque = 1000;
-                wheelColliderBR.brakeTorque = 1000;
+                wheelColliderBL.brakeTorque = 500;
+                wheelColliderBR.brakeTorque = 500;
             }
             else
             {

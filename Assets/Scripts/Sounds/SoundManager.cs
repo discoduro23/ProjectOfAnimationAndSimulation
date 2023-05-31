@@ -108,22 +108,17 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (audioClips.ContainsKey(soundName))
         {
-            bool soundPlayed = false;
-            int counter = 0;
-            while (!soundPlayed || Audiosources.Count < counter)
+
+            for( int i = 0; i < Audiosources.Count; i++)
             {
-                if (!Audiosources[counter].GetComponent<AudioSource>().isPlaying)
+                if (!Audiosources[i].GetComponent<AudioSource>().isPlaying)
                 {
-                    soundPlayed = true;
-                    Audiosources[counter].GetComponent<AudioSource>().clip = audioClips.GetValueOrDefault(soundName);
-                    Audiosources[counter].GetComponent<AudioSource>().Play();
-                    return Audiosources[counter];
+                    Audiosources[i].GetComponent<AudioSource>().clip = audioClips.GetValueOrDefault(soundName);
+                    Audiosources[i].GetComponent<AudioSource>().Play();
+                    return Audiosources[i];
                 }
-                counter++;
             }
         }
         return null;
     }
-
-
 }

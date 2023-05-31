@@ -9,6 +9,9 @@ public class TurretController : MonoBehaviour
     public float accelH = 2f;
     public float maxSpeedV = 10.0f;
     public float accelV = 2f;
+
+    public float FovUpAndgle = 30;
+    public float FovDownAngle = 30;
     public float forceBreak = 2f;
     public float currentHSpeed;
     public float currentVSpeed;
@@ -45,7 +48,7 @@ public class TurretController : MonoBehaviour
         if (turretMode)
         {
             float dt = Time.deltaTime;
-            if (Input.GetAxis("Horizontal") > 0)
+            if (Input.GetAxis("Horizontal") > 0 )
             {
                 currentHSpeed = Mathf.MoveTowards(currentHSpeed, maxSpeedH, accelH * dt);
             }
@@ -57,15 +60,14 @@ public class TurretController : MonoBehaviour
             {
                 currentHSpeed = Mathf.MoveTowards(currentHSpeed, 0, forceBreak * accelH * dt);
             }
-
-            if (Turret2.transform.rotation.x < 30 && Turret2.transform.rotation.x > -10)
-                if (Input.GetAxis("Vertical") > 0)
-                {
-                    currentVSpeed = Mathf.MoveTowards(currentVSpeed, maxSpeedV, accelV * dt);
-                }
-                else if (Input.GetAxis("Vertical") < 0)
+            Debug.Log(Vector3.Angle(-Turret.transform.up, Turret.transform.position - bulletSpawn.transform.position));
+                if (Input.GetAxis("Vertical") > 0 && Vector3.Angle(Turret.transform.up, Turret.transform.position - bulletSpawn.transform.position) > FovUpAndgle)
                 {
                     currentVSpeed = Mathf.MoveTowards(currentVSpeed, -maxSpeedV, accelV * dt);
+                }
+                else if (Input.GetAxis("Vertical") < 0 && Vector3.Angle(Turret.transform.up, Turret.transform.position - bulletSpawn.transform.position) < FovDownAngle)
+                {
+                    currentVSpeed = Mathf.MoveTowards(currentVSpeed, maxSpeedV, accelV * dt);
                 }
                 else
                 {

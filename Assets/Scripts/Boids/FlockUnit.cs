@@ -22,6 +22,7 @@ public class FlockUnit : MonoBehaviour
     private Vector3 currentVelocity;
     private Vector3 currentObstacleAvoidanceVector;
     private float speed;
+    public ArmIKBehaviour armIK;
 
     bool targeteing = false;
 
@@ -192,6 +193,7 @@ public class FlockUnit : MonoBehaviour
     {
         var offsetToCenter =  assignedFlock.transform.position-myTransform.position;
         bool isNearCenter = (offsetToCenter.magnitude >= assignedFlock.boundsDistance * 0.9f);
+        if(offsetToCenter.y < -10) isNearCenter = false;
         return isNearCenter ? offsetToCenter.normalized : Vector3.zero;
     }
 
@@ -251,7 +253,14 @@ public class FlockUnit : MonoBehaviour
     {
         if (assignedFlock.target == null) { return Vector3.zero; }
         Vector3 directionToTarget = -(myTransform.position - assignedFlock.target.position);
-        if (directionToTarget.magnitude > assignedFlock.targetDistance && !targeteing) { return Vector3.zero; }
+
+        int noise = 1;
+
+        if (armIK.isMining) noise = 2;
+
+        else if(armIK.isConstructing) noise = 3;
+
+        if (directionToTarget.magnitude > assignedFlock.targetDistance * noise && !targeteing) { return Vector3.zero; }
         targeteing = true;
 
         if (RotorSound == null)

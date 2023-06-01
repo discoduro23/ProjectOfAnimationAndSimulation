@@ -20,7 +20,8 @@ public class ArmIKBehaviour : MonoBehaviour
     [SerializeField] float sphericalRadiusPresence = 0.1f; // The radius of the sphere that the target is in
 
     [SerializeField] float nearDistance = 1;
-
+    public bool isMining = false;
+    public bool isConstructing = false;
 
 
 
@@ -187,7 +188,9 @@ public class ArmIKBehaviour : MonoBehaviour
         
         if (other.CompareTag("Mine"))
         {
-            Debug.Log("Mine detected");
+            //Debug.Log("Mine detected");
+            isMining = true;
+            isConstructing = false;
             target = other.gameObject;
 
             float distance = Vector3.Distance(target.transform.position, joints[joints.Length - 1].position);
@@ -204,7 +207,9 @@ public class ArmIKBehaviour : MonoBehaviour
         }
         else if (other.CompareTag("Build"))
         {
-            Debug.Log("Repare Detected");
+            //Debug.Log("Repare Detected");
+            isMining = false;
+            isConstructing = true;
             target = other.gameObject;
 
             float distance = Vector3.Distance(target.transform.position, joints[joints.Length - 1].position);
@@ -219,6 +224,11 @@ public class ArmIKBehaviour : MonoBehaviour
             }
 
 
+        }
+        else
+        {
+            isMining = false;
+            isConstructing = false;
         }
     }
 

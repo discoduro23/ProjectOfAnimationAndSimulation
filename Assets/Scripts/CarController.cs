@@ -59,7 +59,7 @@ public class CarController : MonoBehaviour
             {
                 releasedAccel = true;
                 GameObject sound = SoundManager.instance.CreateSound("Acceleration");
-                sound.transform.position = transform.position;
+                if (sound != null) sound.transform.position = transform.position;
             }
 
 
@@ -69,8 +69,8 @@ public class CarController : MonoBehaviour
                 if(releasedBrake)
                 {
                     GameObject sound = SoundManager.instance.CreateSound("Brake");
-                    sound.GetComponent<AudioSource>().volume = 0.2f;
-                    sound.transform.position = transform.position;
+                    if (sound != null) sound.GetComponent<AudioSource>().volume = 0.2f;
+                    if (sound != null) sound.transform.position = transform.position;
                     releasedBrake = false;
                 }
                 

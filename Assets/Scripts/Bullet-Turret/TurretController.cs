@@ -73,7 +73,7 @@ public class TurretController : MonoBehaviour
             }
             else
             {
-                currentVSpeed = Mathf.MoveTowards(currentVSpeed, 0, forceBreak * accelV * dt);
+                currentVSpeed = 0;
             }
 
             Turret.transform.Rotate(0, currentHSpeed, 0, Space.Self);

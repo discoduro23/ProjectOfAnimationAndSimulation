@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class FLock : MonoBehaviour
 {
+    public ArmIKBehaviour armIK;
     private GameObject fishParent;
     private GameObject visibleParent;
     public QT_Minimap Minimap;
@@ -46,7 +47,7 @@ public class FLock : MonoBehaviour
     [SerializeField] private float _obstacleDistance;
     public float obstacleDistance { get { return _obstacleDistance; } }
 
-    [Range(0, 100)]
+    [Range(0, 1000)]
     [SerializeField] private float _boundsDistance;
     public float boundsDistance { get { return _boundsDistance; } }
 
@@ -133,6 +134,7 @@ public class FLock : MonoBehaviour
             visiblePref.transform.parent = visibleParent.transform;
             visiblePref.GetComponent<DroneConstraption>().target = target;
             Minimap.AddMarker(visiblePref.GetComponent<QT_MapObject>(), false);
+            allUnits[i].armIK = armIK;
             allUnits[i].transform.parent = fishParent.transform;
             allUnits[i].AssignFlock(this);
             allUnits[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));

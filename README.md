@@ -1,7 +1,7 @@
 # Rescue Mission: Ravenger
 
 ## Description
-Well, to be determined I guess...
+We have a awesome Manual on the PDU Hook!
 
 ## Final Project Elements
 

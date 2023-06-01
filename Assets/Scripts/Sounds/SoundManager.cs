@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using static SoundManager;
 
 public class SoundManager : Singleton<SoundManager>
@@ -29,7 +30,8 @@ public class SoundManager : Singleton<SoundManager>
     // Start is called before the first frame update
     void Start()
     {
-        if(sounds.Count > 0)
+        Random.InitState((int)System.DateTime.Now.Ticks);
+        if (sounds.Count > 0)
         {
             foreach(var clip in sounds)
             {
@@ -69,10 +71,9 @@ public class SoundManager : Singleton<SoundManager>
     {
         if (!radioGalaxia.isPlaying)
         {
-            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
             if(radioGalaxiaIsSong)
             {
-                int randomClip = UnityEngine.Random.Range(0, radioGalaxiaClips.Count);
+                int randomClip = Random.Range(0, radioGalaxiaClips.Count);
                 radioGalaxia.clip = radioGalaxiaClips[randomClip];
                 radioGalaxia.Play();
                 radioGalaxiaIsSong = false;
@@ -80,7 +81,7 @@ public class SoundManager : Singleton<SoundManager>
             else
             {
                 radioGalaxiaIsSong = true;
-                int randomClip = UnityEngine.Random.Range(0, radioGalaxiaInterclip.Count);
+                int randomClip = Random.Range(0, radioGalaxiaInterclip.Count);
                 radioGalaxia.clip = radioGalaxiaInterclip[randomClip];
                 radioGalaxia.Play();
             }

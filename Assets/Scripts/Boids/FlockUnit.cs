@@ -192,8 +192,9 @@ public class FlockUnit : MonoBehaviour
     private Vector3 CalculateBoundsVector()
     {
         var offsetToCenter =  assignedFlock.transform.position-myTransform.position;
+        Debug.Log(offsetToCenter);
         bool isNearCenter = (offsetToCenter.magnitude >= assignedFlock.boundsDistance * 0.9f);
-        if(offsetToCenter.y < -10) isNearCenter = false;
+        if (offsetToCenter.y < 20) return Vector3.down;
         return isNearCenter ? offsetToCenter.normalized : Vector3.zero;
     }
 

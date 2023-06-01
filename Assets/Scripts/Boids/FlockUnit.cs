@@ -194,7 +194,7 @@ public class FlockUnit : MonoBehaviour
         var offsetToCenter =  assignedFlock.transform.position-myTransform.position;
         bool isNearCenter = (offsetToCenter.magnitude >= assignedFlock.boundsDistance * 0.9f);
         if (transform.position.y < 10) return Vector3.up + Vector3.forward;
-        if (transform.position.y > 40) return Vector3.down + Vector3.forward;
+        if (transform.position.y > 20) return Vector3.down + Vector3.forward;
         return isNearCenter ? offsetToCenter.normalized : Vector3.zero;
     }
 

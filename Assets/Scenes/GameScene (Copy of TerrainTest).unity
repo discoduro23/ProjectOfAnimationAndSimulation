@@ -4989,7 +4989,7 @@ MonoBehaviour:
   isPercentage: 0
   adviseZonnite: {fileID: 353412950}
   infoTxt: {fileID: 341724791}
-  bigtitle: {fileID: 0}
+  bigtitle: {fileID: 1451560236}
   circularProgressBar: {fileID: 404598837}
   horizontalProgressBar: {fileID: 346618020}
   bigShip: {fileID: 1772960943}
@@ -5212,7 +5212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: -43}
+  m_AnchoredPosition: {x: 3, y: -133.3}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1451560236
@@ -5235,8 +5235,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <b>Congratulations!</b> You repaired all the antennas and the ship is ready
-    to take you home!
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -6835,15 +6834,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4156609400544380, guid: 185480b2a16a34b46a719bd2164048d7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 18.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4156609400544380, guid: 185480b2a16a34b46a719bd2164048d7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 18.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4156609400544380, guid: 185480b2a16a34b46a719bd2164048d7, type: 3}
       propertyPath: m_LocalScale.z
-      value: 18.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4156609400544380, guid: 185480b2a16a34b46a719bd2164048d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6855,7 +6854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4156609400544380, guid: 185480b2a16a34b46a719bd2164048d7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1220
+      value: -764.2
       objectReference: {fileID: 0}
     - target: {fileID: 4156609400544380, guid: 185480b2a16a34b46a719bd2164048d7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6915,6 +6914,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPoint: {fileID: 1733539416}
+  moveDuration: 2
+  scaleDuration: 1
 --- !u!1 &1774097100
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
     private void Start()
     {
         adviseZonnite.text = "";
+        bigtitle.text = "";
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -73,7 +74,6 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
         adviseZonnite.text = "You need " + (materialToPickForAntena - materialPicked) + " Zonnites to repare the antena";
         yield return new WaitForSeconds(2);
         adviseZonnite.text = "";
-        bigtitle.text = "";
         isAdviseShow = false;
 
     }
@@ -104,15 +104,16 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
             {
                 cameras.endgame = true;
                 isEndCongratulations = true;
-                bigShip.StartCoroutine(bigShip.MoveShip());
+                StartCoroutine(EndGame());
             }
         }
     }
 
-    IEnumerator showCongrats()
+    IEnumerator EndGame()
     {
-        yield return new WaitForSeconds(2);
-        bigtitle.text = "Congratulations! You repaired all the antennas and the ship is ready to take you home!";
+        yield return new WaitForSeconds(5);
+        bigShip.MoveShip();
+        bigtitle.text = "<b>Congratulations!</b> You repaired all the antennas and the ship is ready to take you home!";
         yield return new WaitForSeconds(10);
         SceneManager.LoadScene("MainMenu");
     }

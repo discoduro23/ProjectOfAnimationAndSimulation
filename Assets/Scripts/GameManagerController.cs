@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManagerController : SingletonNotPersistent<GameManagerController>
 {
     [SerializeField] private bool isEndCongratulations = false;
+    [SerializeField] private bool isLoosing = false;
 
     public int life = 100;
 
@@ -108,9 +109,10 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
             }
         }
 
-        if( life <= 0)
+        if( life <= 0 && !isLoosing)
         {
             cameras.endgame = true;
+            isLoosing = true;
             StartCoroutine(Loser());
         }
     }
@@ -126,8 +128,9 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
 
     IEnumerator Loser()
     {
-        bigtitle.text = "<b>Game Over</b> The drones killed you";
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(2);
+        bigtitle.text = "<b>Game Over</b> The drones killed you!";
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene("MainMenu");
     }
 

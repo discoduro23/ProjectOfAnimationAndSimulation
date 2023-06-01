@@ -593,14 +593,14 @@ MonoBehaviour:
   target: {fileID: 0}
   FOVAngle: 270
   FOVWeapon: 30
-  _AttackDistance: 10
+  _AttackDistance: 20
   attackTime: 5
   attackInterval: 2
   canAttack: 1
   isAiming: 0
   weapon: {fileID: 4227970437015044427}
   weaponSpeed: 10
-  trackDistance: 20
+  trackDistance: 25
   FovUp: 45
   FovDown: 60
   muzzle: {fileID: 1990600194809157862}

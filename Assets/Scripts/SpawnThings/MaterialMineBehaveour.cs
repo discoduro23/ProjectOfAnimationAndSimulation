@@ -33,12 +33,15 @@ public class MaterialMineBehaveour : MonoBehaviour
             if(audioSource == null)
             {
                 audioSource = SoundManager.instance.CreateSound("Mining").GetComponent<AudioSource>();
+                audioSource.gameObject.transform.position = transform.position;
             }
             else
             {
                 if (!audioSource.isPlaying)
                 {
                     audioSource = SoundManager.instance.CreateSound("Mining").GetComponent<AudioSource>();
+                    audioSource.gameObject.transform.position = transform.position;
+
                 }
             }
             // Reducir el tamaño de la mina de mineral

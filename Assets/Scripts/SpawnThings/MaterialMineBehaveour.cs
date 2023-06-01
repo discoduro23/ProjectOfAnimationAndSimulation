@@ -1,6 +1,7 @@
 using QuantumTek.QuantumTravel;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MaterialMineBehaveour : MonoBehaviour
@@ -33,14 +34,14 @@ public class MaterialMineBehaveour : MonoBehaviour
             if(audioSource == null)
             {
                 audioSource = SoundManager.instance.CreateSound("Mining").GetComponent<AudioSource>();
-                audioSource.gameObject.transform.position = transform.position;
+                if (audioSource != null) audioSource.gameObject.transform.position = transform.position;
             }
             else
             {
                 if (!audioSource.isPlaying)
                 {
                     audioSource = SoundManager.instance.CreateSound("Mining").GetComponent<AudioSource>();
-                    audioSource.gameObject.transform.position = transform.position;
+                    if (audioSource != null) audioSource.gameObject.transform.position = transform.position;
 
                 }
             }

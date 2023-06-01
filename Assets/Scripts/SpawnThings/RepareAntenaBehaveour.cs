@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RepareAntenaBehaveour : MonoBehaviour
@@ -31,7 +32,7 @@ public class RepareAntenaBehaveour : MonoBehaviour
                 beamInstance = Instantiate(beamPrefab, beamPlace.position, beamPlace.rotation);
                 GameManagerController.Instance.RepairCompleted();
                 audioSource = SoundManager.instance.CreateSound("Shoot2").GetComponent<AudioSource>();
-                audioSource.gameObject.transform.position = transform.position;
+                if (audioSource != null) audioSource.gameObject.transform.position = transform.position;
 
             }
             else
@@ -40,7 +41,7 @@ public class RepareAntenaBehaveour : MonoBehaviour
                 if (audioSource == null)
                 {
                     audioSource = SoundManager.instance.CreateSound("LegoBuild").GetComponent<AudioSource>();
-                    audioSource.gameObject.transform.position = transform.position;
+                    if (audioSource != null) audioSource.gameObject.transform.position = transform.position;
 
                 }
                 else
@@ -48,7 +49,7 @@ public class RepareAntenaBehaveour : MonoBehaviour
                     if (!audioSource.isPlaying)
                     {
                         audioSource = SoundManager.instance.CreateSound("LegoBuild").GetComponent<AudioSource>();
-                        audioSource.gameObject.transform.position = transform.position;
+                        if (audioSource != null) audioSource.gameObject.transform.position = transform.position;
 
                     }
                 }

@@ -107,6 +107,12 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
                 StartCoroutine(EndGame());
             }
         }
+
+        if( life <= 0)
+        {
+            cameras.endgame = true;
+            StartCoroutine(Loser());
+        }
     }
 
     IEnumerator EndGame()
@@ -114,6 +120,13 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
         yield return new WaitForSeconds(5);
         bigShip.MoveShip();
         bigtitle.text = "<b>Congratulations!</b> You repaired all the antennas and the ship is ready to take you home!";
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    IEnumerator Loser()
+    {
+        bigtitle.text = "<b>Game Over</b> The drones killed you";
         yield return new WaitForSeconds(10);
         SceneManager.LoadScene("MainMenu");
     }

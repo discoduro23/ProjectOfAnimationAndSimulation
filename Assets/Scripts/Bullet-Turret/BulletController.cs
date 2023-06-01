@@ -1,3 +1,4 @@
+using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,12 +24,7 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!explosion.isEmitting && collided)
-        {
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-            gameObject.SetActive(false);
-            CancelInvoke();
-        }
+        
     }
 
     void OnCollisionEnter(Collision collision)
@@ -39,7 +35,7 @@ public class BulletController : MonoBehaviour
             //Debug.Log("morite puto");
             gameManagerController.life -= 5;
             GameObject sound = SoundManager.instance.CreateSound("Crash");
-            sound.transform.position = transform.position;
+            if (sound != null) sound.transform.position = transform.position;
             explosion.Play();
         }
         else if(collision.gameObject.GetComponent<DroneConstraption>() != null)
@@ -49,9 +45,13 @@ public class BulletController : MonoBehaviour
             exp.transform.position = collision.transform.position;
             Destroy(collision.gameObject);
             GameObject sound = SoundManager.instance.CreateSound("DroneExplosion");
-            sound.transform.position = transform.position;
+            if (sound != null) sound.transform.position = transform.position;
             explosion.Play();
-        }        
+        }
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        gameObject.SetActive(false);
+        CancelInvoke();
+
     }
 
     private void Disabled()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Reflection;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -258,7 +259,7 @@ public class FlockUnit : MonoBehaviour
             RotorSound = SoundManager.Instance.CreateSound("Rotor");
         }
         else if (!RotorSound.GetComponent<AudioSource>().isPlaying) RotorSound = SoundManager.Instance.CreateSound("Rotor");
-
+        if (RotorSound != null) RotorSound.transform.position = transform.position;
 
         if (directionToTarget.magnitude <= assignedFlock.obstacleDistance*2) return -directionToTarget.normalized;
 

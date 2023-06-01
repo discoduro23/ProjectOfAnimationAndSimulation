@@ -137,11 +137,6 @@ namespace ThirdPersonCamera
                 // get colliders from target
                 var colliders = target.GetComponentsInChildren<Collider>();
 
-                foreach (var col in colliders)
-                {
-                    if (!playerLayer.IsInLayerMask(col.gameObject))
-                        Debug.LogWarning("The target \"" + col.gameObject.name + "\" has a collider which is not in the player layer. To fix: Change the layer of " + col.gameObject.name + " to the layer referenced in CameraController->Player layer");
-                }
 
                 initDone = true;
             }

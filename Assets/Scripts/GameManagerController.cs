@@ -119,6 +119,9 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
 
     IEnumerator EndGame()
     {
+        isPercentage = false
+        circularProgressBar.SetActive(false);
+        
         yield return new WaitForSeconds(5);
         bigShip.MoveShip();
         bigtitle.text = "<b>Congratulations!</b> You repaired all the antennas and the ship is ready to take you home!";

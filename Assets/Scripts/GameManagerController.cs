@@ -119,7 +119,7 @@ public class GameManagerController : SingletonNotPersistent<GameManagerControlle
 
     IEnumerator EndGame()
     {
-        isPercentage = false
+        isPercentage = false;
         circularProgressBar.SetActive(false);
         
         yield return new WaitForSeconds(5);
